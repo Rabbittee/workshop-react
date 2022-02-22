@@ -1,4 +1,5 @@
-import { clsx } from '../utils';
+import clsx from 'clsx';
+
 export function Complete({ list, toggleStatus, onDelete }) {
   return (
     <section className="flex w-full flex-col">
