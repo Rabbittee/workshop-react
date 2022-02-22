@@ -1,4 +1,4 @@
-import { clsx } from '../utils';
+import clsx from 'clsx';
 
 export function Input({ name, className, value, onChange }) {
   return (

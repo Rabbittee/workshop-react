@@ -1,5 +1,5 @@
+import clsx from 'clsx';
 import { Input } from './Input';
-import { clsx } from '../utils';
 
 export function Todo({ list, toggleEdit, toggleStatus, onUpdate, onDelete, onChange }) {
   return (
