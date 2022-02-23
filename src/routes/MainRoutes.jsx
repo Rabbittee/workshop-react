@@ -1,6 +1,7 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import Welcome from 'components/Welcome';
 import Layout from 'components/Layout';
+import Alpha from 'pages/alpha';
 import Cola from 'pages/Cola';
 import Erica from 'pages/Erica';
 import Haha from 'pages/Haha';
@@ -16,8 +17,8 @@ function MainRouter() {
       <Route path="/" element={<Layout />}>
         <Route index element={<Welcome />} />
 
+        <Route path="alpha/*" element={<Alpha />} />
         <Route path="cola/*" element={<Cola />} />
-
         <Route path="erica/*" element={<Erica />} />
         <Route path="haha/*" element={<Haha />} />
         <Route path="kevin/*" element={<Kevin />} />
