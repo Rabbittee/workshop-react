@@ -1,10 +1,8 @@
-import { useState } from "react";
 import Button from "./button";
 
-function TodoInput() {
-  const [inputValue, setInputValue] = useState('');
+function TodoForm({ handleSubmit, inputValue, setInputValue }) {
   return (
-    <div>
+    <form onSubmit={ handleSubmit }>
       <label htmlFor="todoInput"></label>
       <input
         id="todoInput"
@@ -15,8 +13,7 @@ function TodoInput() {
         value={inputValue}
       />
       <Button type="submit" text="Click Me!!!" />
-    </div>
+    </form>
   );
 }
-
-export default TodoInput;
+export default TodoForm;
