@@ -1,18 +1,30 @@
-import Button from "./button";
+import { useState } from "react";
+// import Button from "./button";
 
-function TodoForm({ handleSubmit, inputValue, setInputValue }) {
+function TodoForm({ formName, addTodo}) {
+  const [inputValue, setInputValue] = useState("");
+  function handleSubmit(e, formName) {
+    e.preventDefault();
+    const currentForm = new FormData(e.target);
+    const nextValue = currentForm.get(formName);
+    e.target.reset();
+    addTodo(nextValue);
+    return nextValue;
+  }
   return (
-    <form onSubmit={ handleSubmit }>
-      <label htmlFor="todoInput"></label>
+    <form
+      className="border-solid border-emerald-600 border-4 mb-5"
+      onSubmit={e => handleSubmit(e, formName) }>
+      <label htmlFor={formName}></label>
       <input
-        id="todoInput"
+        id={formName}
         type="text"
-        name="todo"
+        name={formName}
         placeholder="type something"
         onInput={e => setInputValue(e.target.value)}
         value={inputValue}
       />
-      <Button type="submit" text="Click Me!!!" />
+      <button type="submit">Submit</button>
     </form>
   );
 }
