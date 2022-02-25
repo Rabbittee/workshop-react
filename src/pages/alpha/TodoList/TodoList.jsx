@@ -1,42 +1,44 @@
 import { Complete, Todo, Form } from './components';
 import { useEffect, useState } from 'react';
+import { Status, State } from './constant';
+
+const memory = 'alpha_list';
 
 const TodoList = () => {
-  const localList = JSON.parse(localStorage.getItem('alpha_list')) || [];
+  const localList = JSON.parse(localStorage.getItem(memory)) || [];
   const [list, setList] = useState(localList);
 
   function createItem(value) {
-    const item = { id: Date.now(), title: value, status: 'todo', state: 'null' };
-    console.log(list);
+    const item = { id: Date.now(), title: value, status: Status.todo, state: State.null };
+
     setList((list) => list.concat(item));
-    localStorage.setItem('alpha_list', JSON.stringify(list));
-    // event.target.reset();
+    localStorage.setItem(memory, JSON.stringify(list));
   }
 
   function onSubmit(event) {
     event.preventDefault();
     const formdata = new FormData(event.target);
-    createItem(formdata.get('todo'));
+    createItem(formdata.get(Status.todo));
+    event.target.reset();
   }
 
   function toggleStatus(item) {
     item['status'] === 'complete' ? (item['status'] = 'todo') : (item['status'] = 'complete');
-    console.log(item);
     setList((list) => list.map((_item) => (_item.id === item.id ? item : _item)));
   }
 
   function onDelete(item) {
-    setList((list) => list.filter((_item) => _item !== item));
+    setList((list) => list.filter((_item) => _item.id !== item.id));
   }
 
   function toggleEdit(item) {
-    item['state'] = 'edit';
-    setList((list) => list.map((_item) => (_item.id === item.id ? item : _item)));
+    item.state = State.edit;
+    onUpdate(item);
   }
 
   function onChange(event) {
     const { name, value } = event.target;
-    onUpdate({ id: Number(name), title: value, state: 'edit', status: 'todo' });
+    onUpdate({ id: Number(name), title: value, state: State.edit, status: Status.todo });
   }
 
   function onUpdate(item) {
@@ -44,8 +46,9 @@ const TodoList = () => {
   }
 
   useEffect(() => {
-    localStorage.setItem('alpha_list', JSON.stringify(list));
+    localStorage.setItem(memory, JSON.stringify(list));
   }, [list]);
+
   return (
     <div>
       <main className="mx-auto flex w-11/12 max-w-2xl flex-col items-center justify-center space-y-12 pt-40">
@@ -53,19 +56,15 @@ const TodoList = () => {
 
         <Form onSubmit={onSubmit} />
 
-        <section className="flex w-full flex-col">
-          <h2 className="w-full self-start border-b-2 border-blue-500 pb-4 text-xl text-blue-500">
-            To do
-          </h2>
-          <Todo
-            list={list}
-            onChange={onChange}
-            onUpdate={onUpdate}
-            onDelete={onDelete}
-            toggleEdit={toggleEdit}
-            toggleStatus={toggleStatus}
-          />
-        </section>
+        <Todo
+          list={list}
+          onChange={onChange}
+          onUpdate={onUpdate}
+          onDelete={onDelete}
+          toggleEdit={toggleEdit}
+          toggleStatus={toggleStatus}
+        />
+
         <Complete list={list} toggleStatus={toggleStatus} onDelete={onDelete} />
       </main>
     </div>
