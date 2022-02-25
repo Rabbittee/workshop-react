@@ -1,6 +1,7 @@
 import clsx from 'clsx';
-import { Status } from '../constant';
+import { Status, State } from '../constant';
 import Button from './Button';
+import { Input } from './Input';
 export function List({
   title,
   list,
@@ -10,11 +11,12 @@ export function List({
   status,
   onUpdate,
   toggleEdit,
+  onChange,
 }) {
   return (
     <section className="flex w-full flex-col">
       <h2 className={clsx('w-full self-start border-b-2  pb-4 text-xl ', className)}>{title}</h2>
-      <ul className="complete mt-6 flex flex-col space-y-12">
+      <ul className="complete mt-6 flex flex-col space-y-12" onChangeCapture={onChange}>
         {list
           .filter((item) => item.status === status)
           .map((item) => {
@@ -24,14 +26,19 @@ export function List({
                 key={item.id}
               >
                 <div className="flex items-center justify-center space-x-4">
-                  <Button.Mode status={item.status} toggleStatus={toggleStatus} item={item} />
-                  <label
-                    className={clsx(
-                      status === Status.complete ? 'text-green-400 line-through' : 'text-black'
-                    )}
-                  >
-                    {item.title}
-                  </label>
+                  <Button.Mode toggleStatus={toggleStatus} item={item} />
+                  {item.state !== State.edit && (
+                    <label
+                      className={clsx(
+                        status === Status.complete ? 'text-green-400 line-through' : 'text-black'
+                      )}
+                    >
+                      {item.title}
+                    </label>
+                  )}
+                  {item.state === State.edit && (
+                    <Input name={item.id} value={item.title} onChange={onChange} />
+                  )}
                 </div>
                 <div className="flex space-x-4">
                   {status === Status.todo && (

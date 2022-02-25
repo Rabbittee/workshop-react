@@ -8,7 +8,7 @@ export function Input({ name, className, value, onChange }) {
       id={name}
       className={clsx('w-5/6 rounded-md p-2 text-xl', className)}
       value={value}
-      onChange={(event) => onChange?.(event.target.value)}
+      onChange={() => onChange}
     />
   );
 }

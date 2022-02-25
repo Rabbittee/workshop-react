@@ -23,7 +23,7 @@ const TodoList = () => {
   }
 
   function toggleStatus(item) {
-    item['status'] === 'complete' ? (item['status'] = 'todo') : (item['status'] = 'complete');
+    item.status = item.status === Status.complete ? Status.todo : Status.complete;
     setList((list) => list.map((_item) => (_item.id === item.id ? item : _item)));
   }
 
