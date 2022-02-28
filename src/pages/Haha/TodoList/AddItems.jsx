@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Icon from './Icon';
+import Button from './Button';
 const uuid = () =>
   ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, (a) =>
     (a ^ ((Math.random() * 16) >> (a / 4))).toString(16)
@@ -32,13 +33,7 @@ function AddItems({ addItem }) {
         placeholder="input value"
         className="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none"
       />
-      <button
-        type="button"
-        onClick={onClick}
-        className="inline-flex items-center rounded-lg bg-[#78abb19d] p-2 px-5 py-2.5 text-center text-sm font-medium text-gray-900 hover:bg-[#F7BE38]/90 focus:ring-4 focus:ring-[#F7BE38]/50 dark:focus:ring-[#F7BE38]/50"
-      >
-        <Icon logo="add" size="30" />
-      </button>
+      <Button onClick={onClick} logo="add" label="add" Class="bg-[#78abb19d]" />
     </div>
   );
 }
