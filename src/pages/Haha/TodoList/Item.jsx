@@ -20,6 +20,7 @@ function Item({ child, onChange }) {
     const editItem = { ...child, val: e.target.value };
     setEditVal(editItem);
     onChange(editItem);
+    if (e.key === 'Enter') setEditInput(!editInput);
   };
 
   const handleDelete = () => {
@@ -27,8 +28,8 @@ function Item({ child, onChange }) {
     toggleDialog();
   };
 
-  const onKeyDown = ({ key }) => {
-    if (key === 'Enter') return handleEdit();
+  const onKeyDown = (e) => {
+    if (e.key === 'Enter') return handleEdit(e);
   };
 
   return (
