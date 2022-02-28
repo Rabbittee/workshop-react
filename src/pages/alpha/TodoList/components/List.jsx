@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { Status, State } from '../constant';
+import { STATUS, STATE } from '../constant';
 import Button from './Button';
 import { Input } from './Input';
 export function List({
@@ -27,21 +27,21 @@ export function List({
               >
                 <div className="flex items-center justify-center space-x-4">
                   <Button.Mode toggleStatus={toggleStatus} item={item} />
-                  {item.state !== State.edit && (
+                  {item.state !== STATE.edit && (
                     <label
                       className={clsx(
-                        status === Status.complete ? 'text-green-400 line-through' : 'text-black'
+                        status === STATUS.complete ? 'text-green-400 line-through' : 'text-black'
                       )}
                     >
                       {item.title}
                     </label>
                   )}
-                  {item.state === State.edit && (
+                  {item.state === STATE.edit && (
                     <Input name={item.id} value={item.title} onChange={onChange} />
                   )}
                 </div>
                 <div className="flex space-x-4">
-                  {status === Status.todo && (
+                  {status === STATUS.todo && (
                     <Button.Toggle item={item} onUpdate={onUpdate} toggleEdit={toggleEdit} />
                   )}
                   <Button.Delete item={item} onDelete={onDelete} />

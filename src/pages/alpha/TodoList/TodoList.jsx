@@ -1,6 +1,6 @@
 import { Complete, Todo, Form } from './components';
 import { useEffect, useState } from 'react';
-import { Status, State } from './constant';
+import { STATUS, STATE } from './constant';
 
 const memory = 'alpha_list';
 
@@ -9,7 +9,7 @@ const TodoList = () => {
   const [list, setList] = useState(localList);
 
   function createItem(value) {
-    const item = { id: Date.now(), title: value, status: Status.todo, state: State.null };
+    const item = { id: Date.now(), title: value, status: STATUS.todo, state: STATE.null };
 
     setList((list) => list.concat(item));
     localStorage.setItem(memory, JSON.stringify(list));
@@ -18,12 +18,12 @@ const TodoList = () => {
   function onSubmit(event) {
     event.preventDefault();
     const formdata = new FormData(event.target);
-    createItem(formdata.get(Status.todo));
+    createItem(formdata.get(STATUS.todo));
     event.target.reset();
   }
 
   function toggleStatus(item) {
-    item.status = item.status === Status.complete ? Status.todo : Status.complete;
+    item.status = item.status === STATUS.complete ? STATUS.todo : STATUS.complete;
     setList((list) => list.map((_item) => (_item.id === item.id ? item : _item)));
   }
 
@@ -32,13 +32,13 @@ const TodoList = () => {
   }
 
   function toggleEdit(item) {
-    item.state = State.edit;
+    item.state = STATE.edit;
     onUpdate(item);
   }
 
   function onChange(event) {
     const { name, value } = event.target;
-    onUpdate({ id: Number(name), title: value, state: State.edit, status: Status.todo });
+    onUpdate({ id: Number(name), title: value, state: STATE.edit, status: STATUS.todo });
   }
 
   function onUpdate(item) {

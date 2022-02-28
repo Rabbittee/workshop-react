@@ -1,11 +1,11 @@
-import { Status } from '../constant';
+import { STATUS } from '../constant';
 import { List } from './List';
 
 export function Todo({ list, toggleEdit, toggleStatus, onUpdate, onDelete, onChange }) {
   return (
     <List
       title="To do"
-      status={Status.todo}
+      status={STATUS.todo}
       list={list}
       toggleEdit={toggleEdit}
       toggleStatus={toggleStatus}

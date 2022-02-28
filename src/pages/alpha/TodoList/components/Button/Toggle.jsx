@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { State } from '../../constant';
+import { STATE } from '../../constant';
 
 export function Toggle({ onUpdate, toggleEdit, item }) {
   return (
@@ -9,12 +9,12 @@ export function Toggle({ onUpdate, toggleEdit, item }) {
         'transition-colors duration-300 hover:bg-cyan-500 hover:text-white'
       )}
       onClick={
-        item.state === State.edit
-          ? () => onUpdate({ ...item, state: State.null })
+        item.state === STATE.edit
+          ? () => onUpdate({ ...item, state: STATE.null })
           : () => toggleEdit(item)
       }
     >
-      {item.state === State.edit ? 'Save' : 'Edit'}
+      {item.state === STATE.edit ? 'Save' : 'Edit'}
     </button>
   );
 }
