@@ -1,13 +1,25 @@
 import { Fragment } from "react";
 // import Button from "./button"
 
-function ButtonArea({id, isDone, isEdit, deleteItem, toggleDataState}) {
+function ButtonArea({
+  id,
+  isDone,
+  isEdit,
+  text,
+  deleteItem,
+  toggleDataState,
+  updateTodo
+}) {
+  function saveButton(id, text) {
+    toggleDataState(id, 'isEdit');
+    updateTodo(text, id)
+  }
   return (
     <Fragment>
       {isEdit ? (
         <button
           type="submit"
-          onClick={() => toggleDataState(id, 'isEdit')}
+          onClick={() => saveButton(id, text)}
         >
           Save
         </button>

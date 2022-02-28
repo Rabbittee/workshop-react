@@ -1,8 +1,9 @@
 import ButtonArea from "./buttonArea";
+import TodoForm from "./todoForm";
 
 function TodoWrapper({
   dataList,
-  setInputValue,
+  updateTodo,
   toggleDataState,
   deleteItem
 }) {
@@ -22,7 +23,6 @@ function TodoWrapper({
               <input
                 type="text"
                 value={text}
-                onInput={e => setInputValue(e.target.value)}
               />
               ) : (
               <p>{text}</p>
@@ -31,8 +31,10 @@ function TodoWrapper({
               id={id}
               isDone={isDone}
               isEdit={isEdit}
+              text={text}
               deleteItem={deleteItem}
               toggleDataState={toggleDataState}
+              updateTodo={updateTodo}
             />
           </li>
         )}

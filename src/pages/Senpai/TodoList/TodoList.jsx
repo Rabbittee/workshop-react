@@ -8,17 +8,27 @@ function TodoList() {
   // const [inputValue, setInputValue] = useState("");
   const [dataList, setDataList] = useState(() => storage().get() || []);
 
-  function addTodo(text) {
+  function updateTodo( text, id) {
+    console.log(text, id);
     const nextItem = {
       id: new Date().getTime(),
       isDone: false,
       isEdit: false,
       text
-    } 
-    setDataList([...dataList, nextItem]);
+    }
+    if (id === 'addTodo') {
+      setDataList([...dataList, nextItem]);
+    } else {
+      setDataList(dataList.map(item => {
+        if (item.id !== id) return item;
+        return {
+          ...item,
+          text,
+        }
+      }))
+    }
   }
   function toggleDataState(id, toggleState) {
-    console.log('event', toggleState);
     setDataList(dataList.map(item => {
       if (item.id !== id) return item;
       return {
@@ -26,8 +36,6 @@ function TodoList() {
         [toggleState]: !item[toggleState]
       }
     }))
-    // console.log('update data list');
-    // 這邊 clg dataList 不會即時反應，顯示的會是上一個更改的資料
   }
   function deleteItem(id) {
     setDataList(dataList.filter((item) => item.id !== id))
@@ -39,13 +47,14 @@ function TodoList() {
     <div className="mx-auto w-1/2">
       <h1 className="h-full text-3xl text-center">here is pencil's todo list</h1>
       <TodoForm
-        formName="todoInput"
-        addTodo={addTodo}
+        formId="addTodo"
+        updateTodo={updateTodo}
       />
       <TodoWrapper
         dataList={dataList}
-        inputValue={inputValue}
-        setInputValue={setInputValue}
+        // inputValue={inputValue}
+        // setInputValue={setInputValue}
+        updateTodo={updateTodo}
         toggleDataState={toggleDataState}
         deleteItem={deleteItem}
       />
