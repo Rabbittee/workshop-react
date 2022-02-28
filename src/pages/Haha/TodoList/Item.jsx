@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import Icon from './Icon';
 import Dialog from './Dialog';
 import clsx from 'clsx';
+import Button from './Button';
 
 function Item({ child, onChange }) {
   const [editInput, setEditInput] = useState(false);
@@ -57,14 +57,16 @@ function Item({ child, onChange }) {
             <span>{child.val}</span>
           </div>
         )}
-        <button onClick={toggleEdit} className={`${basicClass} col-span-1 bg-gray-400`}>
-          <Icon logo={editInput ? 'greenCheck' : 'edit'} size="25" />
-          <label className="mx-2 text-blue-50">{editLabel}</label>
-        </button>
-        <button onClick={toggleDialog} className={`${basicClass} col-span-1 bg-red-400`}>
-          <Icon logo="trash" size="25" />
-          <label className="mx-2 text-white ">delete</label>
-        </button>
+
+        <Button
+          logo={editInput ? 'greenCheck' : 'edit'}
+          onClick={toggleEdit}
+          label={editLabel}
+          Class="bg-gray-400"
+        />
+
+        <Button logo="trash" onClick={toggleDialog} label="delete" Class="bg-red-400" />
+
         <Dialog show={showDialog} cancel={toggleDialog} confirm={handleDelete} />
       </li>
       <div className="divide-x-8  divide-gray-900"></div>
