@@ -9,7 +9,13 @@ function ItemList({ list, changeItem, delItem }) {
     if (remove) return delItem(index);
     changeItem(index, { ...val, isDone: val.isDone });
   };
-  const listItems = list.map((child) => <Item key={child.id} child={child} onChange={onChange} />);
-  return <ul className="mt-10 w-3/4 rounded-xl bg-red-300">{listItems}</ul>;
+
+  return (
+    <ul className="mt-10 w-3/4 rounded-xl bg-red-300">
+      {list.map((child) => (
+        <Item key={child.id} child={child} onChange={onChange} />
+      ))}
+    </ul>
+  );
 }
 export default ItemList;
