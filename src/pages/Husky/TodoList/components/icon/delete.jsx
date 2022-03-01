@@ -1,4 +1,4 @@
-export function Delete({ onClick }) {
+export function DeleteIcon({ onClick }) {
   return (
     <div onClick={onClick}>
       <svg className="h-5 w-5 text-gray-400" viewBox="0 0 24 24">

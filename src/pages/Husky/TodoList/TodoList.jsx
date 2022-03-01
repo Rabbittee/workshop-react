@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
-import { Input, Button, List } from './components/utils';
+import { List } from './components/utils';
 import { Item } from './Item';
-import { Add } from './components/button';
+import { Add } from './Add';
 
 function addTask(taskTitle, todoList, setTodoList) {
   if ([null, undefined, ''].includes(taskTitle)) {
@@ -11,7 +11,9 @@ function addTask(taskTitle, todoList, setTodoList) {
   const task = {
     id: new Date().getTime(),
     title: taskTitle,
+    editTitle: taskTitle,
     status: false,
+    edit: false,
   };
   setTodoList([...todoList, ...[task]]);
 }
@@ -21,11 +23,30 @@ function deleteTask(deleteIndex, todoList, setTodoList) {
   setTodoList(newTodoList);
 }
 
-function editTask(taskTitle, todoList, setTodoList) {}
+function editTask(newTitle, id, todoList, setTodoList) {
+  const newTodoList = todoList.map((task) => {
+    task.id === id && (task.editTitle = newTitle);
+    return task;
+  });
+  setTodoList(newTodoList);
+}
 
 function toggleTask(id, todoList, setTodoList) {
   const newTodoList = todoList.map((task) => {
     task.id === id && (task.status = !task.status);
+    return task;
+  });
+  setTodoList(newTodoList);
+}
+
+function toggleEditTask(id, todoList, setTodoList) {
+  const newTodoList = todoList.map((task) => {
+    if (task.id === id) {
+      if (task.edit && task.editTitle !== '') {
+        task.title = task.editTitle;
+      }
+      task.edit = !task.edit;
+    }
     return task;
   });
   setTodoList(newTodoList);
@@ -38,15 +59,13 @@ function TodoList() {
   return (
     <div className="flex h-screen w-full flex-col items-center gap-4 bg-slate-500 pt-12">
       {/* add */}
-      <div className="flex gap-2">
-        <div className="relative">
-          <span className="absolute top-4 left-4">
-            <Add />
-          </span>
-          <Input placeholder="new task describe" onInput={(e) => setNewTalk(e.target.value)} />
-        </div>
-        <Button text="add" onClick={() => addTask(newTalk, todoList, setTodoList)} />
-      </div>
+      <Add
+        setNewTalk={setNewTalk}
+        addTask={addTask}
+        newTalk={newTalk}
+        todoList={todoList}
+        setTodoList={setTodoList}
+      />
 
       {/* list */}
       <List
@@ -57,9 +76,8 @@ function TodoList() {
               task={task}
               onClick={() => toggleTask(task.id, todoList, setTodoList)}
               clickDelete={() => deleteTask(task.id, todoList, setTodoList)}
-              clickEdit={() => {
-                console.log('edit');
-              }}
+              clickEdit={() => toggleEditTask(task.id, todoList, setTodoList)}
+              editTask={(newTitle) => editTask(newTitle, task.id, todoList, setTodoList)}
             />
           );
         })}
