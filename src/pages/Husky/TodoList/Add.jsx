@@ -1,7 +1,7 @@
 import { AddIcon } from './components/icon';
 import { Input, Button } from './components/utils';
 
-export function Add({ setNewTalk, addTask, newTalk, todoList, setTodoList }) {
+export function Add({ setNewTalk, newTalk, methods }) {
   return (
     <div className="flex gap-2">
       <div className="relative">
@@ -18,7 +18,7 @@ export function Add({ setNewTalk, addTask, newTalk, todoList, setTodoList }) {
       <Button
         text="add"
         onClick={() => {
-          addTask(newTalk, todoList, setTodoList);
+          methods.add(newTalk);
           setNewTalk('');
         }}
       />
