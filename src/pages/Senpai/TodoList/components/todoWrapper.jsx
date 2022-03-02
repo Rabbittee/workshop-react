@@ -1,15 +1,16 @@
 import ButtonArea from "./buttonArea";
-import TodoForm from "./todoForm";
 
 function TodoWrapper({
   dataList,
   updateTodo,
   toggleDataState,
-  deleteItem
+  deleteItem,
+  children
 }) {
   return (
     <ul className="flex flex-col gap-3">
-      {dataList.map(({id, isDone, isEdit, text}) => 
+      <children></children>
+      {/* {dataList.map(({id, isDone, isEdit, text}) => 
           <li
             className="flex flex-raw justify-center items-center gap-3 border-b-2 border-blue-400 border-dashed"
             key={`list_${id}`}
@@ -37,7 +38,7 @@ function TodoWrapper({
               updateTodo={updateTodo}
             />
           </li>
-        )}
+        )} */}
     </ul>
   )
 }

@@ -1,37 +1,61 @@
-import { useState } from "react";
-// import ButtonArea from "./buttonArea";
-// import Button from "./button";
+import { Fragment, useState, useEffect } from "react";
+// import Button from './button';
 
-function TodoForm({ formId, updateTodo}) {
-  const [inputValue, setInputValue] = useState("");
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    // const currentForm = new FormData(e.target);
-    // const nextValue = currentForm.get(formId);
-    // e.target.reset();
-    // updateTodo(nextValue);
-    console.log('click input submit');
+function TodoForm({
+  item,
+  formId,
+  updateTodo,
+  toggleDataState,
+  deleteItem
+}) {
+  const [inputValue, setInputValue] = useState(item.text);
+  function handleSave() {
     updateTodo(inputValue, formId);
-    setInputValue("");
-    // return nextValue;
+    toggleDataState(formId, 'isEdit');
   }
-
   return (
-    <form
-      className="border-solid border-emerald-600 border-4 mb-5"
-      onSubmit={(e) => handleSubmit(e) }>
-      <label htmlFor={formId}></label>
-      <input
-        id={formId}
-        type="text"
-        name={formId}
-        placeholder="type something"
-        onInput={e => setInputValue(e.target.value)}
-        value={inputValue}
-      />
-      <button type="submit">Submit</button>
-      {/* <ButtonArea formId={formId} /> */}
+    <form className="border-solid border-emerald-600 border-4 mb-5">
+      <ul>
+        <li>
+          {!item.isEdit &&
+            <label>
+              <input type="checkbox" onClick={() => toggleDataState(formId, 'isDone')} />
+            </label>
+          }
+        </li>
+        <li>
+          {item.isEdit ? (
+            <label>
+              <input
+                type="text"
+                value={inputValue}
+                onInput={(e) => setInputValue(e.target.value.trim())}
+              />
+            </label>
+          ) : (
+            <p>{inputValue}</p>
+          )}
+        </li>
+        <li>
+          {
+          item.isDone ? ( <p>Done</p> ) :
+          item.isEdit ? (
+            <button
+              type="button"
+              onClick={() => handleSave()}
+            >Save</button>
+          ) : (
+            <button
+              type="button"
+              onClick={() => toggleDataState(formId, 'isEdit')}
+            >Edit</button>
+          )}
+          <button
+            type="button"
+            onClick={() => deleteItem(formId)}
+          >Delete</button>
+        </li>
+      </ul>
     </form>
   );
 }

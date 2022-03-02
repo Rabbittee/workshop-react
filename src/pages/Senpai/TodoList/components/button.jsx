@@ -1,12 +1,6 @@
-function Button() {
+function Button({text, method}) {
   return (
-    <button
-      onClick={() => updateDataList(id, toggleTarget)}
-      type={type}
-      disabled={isDone}
-    >
-      {text}
-    </button>
+    <button onClick={() => method()}>{text}</button>
   )
 }
 
