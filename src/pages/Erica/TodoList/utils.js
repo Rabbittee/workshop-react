@@ -1,9 +1,6 @@
-export function clsx(...classnames) {
-  return classnames.filter(Boolean).join(' ');
-}
+const key = 'todo-erica';
 
-export function storate() {
-  const key = 'todo-erica';
+export function storage() {
   return {
     get: () => JSON.parse(localStorage.getItem(key)) || [],
     set: (value) => localStorage.setItem(key, JSON.stringify(value)),
