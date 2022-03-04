@@ -2,7 +2,7 @@ import { Outlet } from 'react-router-dom';
 
 function Layout() {
   return (
-    <div className="bg-stone-800 min-h-screen w-full">
+    <div className="min-h-screen w-full bg-stone-800">
       <Outlet />
     </div>
   );
