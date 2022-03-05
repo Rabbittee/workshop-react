@@ -61,7 +61,7 @@ function Item({ child, onChange }) {
 
         <Button logo="trash" onClick={toggleDialog} label="delete" Class="bg-red-400" />
 
-        <Dialog show={showDialog} cancel={toggleDialog} confirm={handleDelete} />
+        {showDialog && <Dialog cancel={toggleDialog} confirm={handleDelete} />}
       </li>
       <div className="divide-x-8  divide-gray-900"></div>
     </>
