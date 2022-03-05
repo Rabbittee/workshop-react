@@ -12,8 +12,7 @@ function TodoList() {
   };
 
   const delItem = (index) => {
-    list.splice(index, 1);
-    setList([...list]);
+    setList(() => list.filter((el, i) => i !== index));
   };
 
   return (
