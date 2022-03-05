@@ -2,10 +2,8 @@ import React from 'react';
 import Item from './Item';
 
 function ItemList({ list, changeItem, delItem }) {
-  const findThing = (target) => list.find((el) => el.id === target);
-
   const onChange = (val, remove) => {
-    const index = list.indexOf(findThing(val.id));
+    const index = list.findIndex(({ id }) => val.id === id);
     if (remove) return delItem(index);
     changeItem(index, { ...val, isDone: val.isDone });
   };
