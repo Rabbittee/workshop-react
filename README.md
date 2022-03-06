@@ -11,3 +11,4 @@
 - [PlusFive](https://rabbittee.github.io/workshop-react/#/plusfive/todo)
 - [Senpai](https://rabbittee.github.io/workshop-react/#/senpai/todo)
 - [White](https://rabbittee.github.io/workshop-react/#/white/todo)
+- [Husky](https://rabbittee.github.io/workshop-react/#/husky/todo)
