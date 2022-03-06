@@ -1,12 +1,12 @@
-import { ReactComponent as AddIcon } from './components/icon/AddIcon.svg';
+import { Icon } from './components/icon';
 import { Input, Button } from './components/utils';
 
-export function Add({ setNewTalk, newTalk, methods }) {
+export function Add({ setNewTalk, newTalk, addClick }) {
   return (
     <div className="flex gap-2">
       <div className="relative">
         <span className="absolute top-4 left-4">
-          <AddIcon
+          <Icon.Add
             className="h-5 w-5 text-gray-400"
             stroke="currentColor"
             strokeWidth="2"
@@ -17,17 +17,11 @@ export function Add({ setNewTalk, newTalk, methods }) {
         <Input
           value={newTalk}
           placeholder="new task describe"
-          onInput={(e) => setNewTalk(e.target.value.trim())}
+          onInput={(e) => setNewTalk(e.target.value)}
           icon={true}
         />
       </div>
-      <Button
-        text="add"
-        onClick={() => {
-          methods.add(newTalk);
-          setNewTalk('');
-        }}
-      />
+      <Button text="add" onClick={addClick} />
     </div>
   );
 }

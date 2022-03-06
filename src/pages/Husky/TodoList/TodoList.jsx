@@ -4,73 +4,62 @@ import { List } from './components/utils';
 import { Item } from './Item';
 import { Add } from './Add';
 
-class TodoListMethods {
-  constructor(todoList, setTodoList) {
-    this.todoList = todoList;
-    this.setTodoList = setTodoList;
-  }
+function TodoList() {
+  const [newTalk, setNewTalk] = useState('');
+  const [todoList, setTodoList] = useState([]);
 
-  setData(todoList) {
-    this.setTodoList(todoList);
-  }
-
-  add(taskTitle) {
-    if (taskTitle === '') {
+  function addTask() {
+    const newTalkTitle = newTalk.trim();
+    if (newTalkTitle === '') {
       return;
     }
     const task = {
       id: new Date().getTime(),
-      title: taskTitle,
-      editTitle: taskTitle,
+      title: newTalkTitle,
+      editTitle: newTalkTitle,
       status: false,
       edit: false,
     };
-    this.setData([...this.todoList, ...[task]]);
+    setTodoList([...todoList, task]);
+    setNewTalk('');
   }
 
-  delete(id) {
-    const newTodoList = this.todoList.filter((task) => task.id !== id);
-    this.setData(newTodoList);
+  function deleteTask(id) {
+    const newTodoList = todoList.filter((task) => task.id !== id);
+    setTodoList(newTodoList);
   }
 
-  edit(id, newTitle) {
-    const newTodoList = this.todoList.map((task) => {
+  function editTask(id, newTitle) {
+    const newTodoList = todoList.map((task) => {
       task.id === id && (task.editTitle = newTitle);
       return task;
     });
-    this.setData(newTodoList);
+    setTodoList(newTodoList);
   }
 
-  toggleTask(id) {
-    const newTodoList = this.todoList.map((task) => {
+  function toggleTask(id) {
+    const newTodoList = todoList.map((task) => {
       task.id === id && (task.status = !task.status);
       return task;
     });
-    this.setData(newTodoList);
+    setTodoList(newTodoList);
   }
 
-  toggleEditTask(id) {
-    const newTodoList = this.todoList.map((task) => {
+  function toggleEditTask(id) {
+    const newTodoList = todoList.map((task) => {
       if (task.id === id) {
         task.edit && task.editTitle !== '' && (task.title = task.editTitle);
         task.edit = !task.edit;
       }
       return task;
     });
-    this.setData(newTodoList);
+    setTodoList(newTodoList);
   }
-}
-
-function TodoList() {
-  const [newTalk, setNewTalk] = useState('');
-  const [todoList, setTodoList] = useState([]);
-
-  const methods = new TodoListMethods(todoList, setTodoList);
 
   return (
     <div className="flex h-screen w-full flex-col items-center gap-4 bg-slate-500 pt-12">
       {/* add */}
-      <Add setNewTalk={setNewTalk} newTalk={newTalk} methods={methods} />
+      <Add setNewTalk={setNewTalk} newTalk={newTalk} addClick={addTask} />
 
       {/* list */}
       <List>
@@ -79,10 +68,10 @@ function TodoList() {
             <Item
               key={task.id}
               task={task}
-              clickDelete={() => methods.delete(task.id)}
-              editTask={(newTitle) => methods.edit(task.id, newTitle)}
-              onClick={() => methods.toggleTask(task.id)}
-              clickEdit={() => methods.toggleEditTask(task.id)}
+              clickDelete={() => deleteTask(task.id)}
+              editTask={(newTitle) => editTask(task.id, newTitle)}
+              onClick={() => toggleTask(task.id)}
+              clickEdit={() => toggleEditTask(task.id)}
             />
           );
         })}
