@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import Dialog from './Dialog';
 import clsx from 'clsx';
+import Dialog from './Dialog';
 import Button from './Button';
 import Input from './Input';
 
