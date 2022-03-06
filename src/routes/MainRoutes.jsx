@@ -26,7 +26,7 @@ function MainRouter() {
         <Route path="plusfive/*" element={<PlusFive />} />
         <Route path="senpai/*" element={<Senpai />} />
         <Route path="white/*" element={<White />} />
-        <Route path="Husky/*" element={<Husky />} />
+        <Route path="husky/*" element={<Husky />} />
 
         <Route path="*" element={<Navigate to="/" />} />
       </Route>
