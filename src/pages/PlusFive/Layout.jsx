@@ -2,7 +2,7 @@ import { Outlet } from 'react-router-dom';
 
 function Layout() {
   return (
-    <div className="">
+    <div className="bg-slate-800">
       <Outlet />
     </div>
   );

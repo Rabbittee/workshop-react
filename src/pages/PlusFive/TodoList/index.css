@@ -1,0 +1,7 @@
+.font-style {
+  @apply font-serif font-thin tracking-widest text-white;
+}
+
+.shadow-style {
+  @apply shadow-sm shadow-slate-200;
+}
