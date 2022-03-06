@@ -1,5 +1,4 @@
-import { ReactComponent as EditIcon } from './components/icon/EditIcon.svg';
-import { ReactComponent as DeleteIcon } from './components/icon/DeleteIcon.svg';
+import { Icon } from './components/icon';
 import { Input } from './components/utils';
 
 function EditToggle({ task, onClick, editTask }) {
@@ -26,8 +25,8 @@ export function Item({ task, onClick, clickDelete, clickEdit, editTask }) {
       <div className="flex flex-1 transform select-none items-center gap-4 rounded-md bg-white p-4 shadow transition duration-500 ease-in-out hover:-translate-y-1 hover:shadow-lg">
         <EditToggle task={task} onClick={onClick} editTask={editTask} />
         <button className="flex w-12 justify-end gap-2 text-right">
-          {!task.status && <EditIcon className="h-5 w-5 text-gray-400" onClick={clickEdit} />}
-          <DeleteIcon className="h-5 w-5 text-gray-400" onClick={clickDelete} />
+          {!task.status && <Icon.Edit className="h-5 w-5 text-gray-400" onClick={clickEdit} />}
+          <Icon.Delete className="h-5 w-5 text-gray-400" onClick={clickDelete} />
         </button>
       </div>
     </li>
