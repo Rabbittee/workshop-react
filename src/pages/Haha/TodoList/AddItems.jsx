@@ -32,7 +32,13 @@ function AddItems({ addItem }) {
         Class="w-full"
         label="input value"
       />
-      <Button onClick={onClick} logo="add" label="add" Class="bg-[#78abb19d]" />
+      <Button
+        fn={onClick}
+        size="30"
+        logo="add"
+        message="add"
+        className="inline-flex items-center rounded-lg bg-[#78abb19d] p-2 px-5 py-2.5 text-center text-sm font-medium text-gray-900 hover:bg-[#F7BE38]/90 focus:ring-4 focus:ring-[#F7BE38]/50 dark:focus:ring-[#F7BE38]/50"
+      />
     </div>
   );
 }

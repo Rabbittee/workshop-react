@@ -1,3 +1,4 @@
+import Button from './Button';
 function Dialog({ cancel, confirm }) {
   return (
     <div
@@ -23,18 +24,16 @@ function Dialog({ cancel, confirm }) {
             <h2 className="py-4 text-xl font-bold ">確定刪除嗎?</h2>
           </div>
           <div className="space-x-4 text-center md:block">
-            <button
-              onClick={cancel}
-              className="mb-2 rounded-full border bg-white px-5 py-2 text-sm font-medium tracking-wider text-gray-600 shadow-sm hover:bg-gray-100 hover:shadow-lg md:mb-0"
-            >
-              Cancel
-            </button>
-            <button
-              onClick={confirm}
-              className="mb-2 rounded-full border border-red-500 bg-red-500 px-5 py-2 text-sm font-medium tracking-wider text-white shadow-sm hover:bg-red-600 hover:shadow-lg md:mb-0"
-            >
-              Delete
-            </button>
+            <Button
+              fn={cancel}
+              message="Cancel"
+              className="mb-2 rounded-full border bg-white px-5 py-2 text-sm font-medium tracking-wider shadow-sm hover:bg-gray-100 hover:shadow-lg md:mb-0"
+            />
+            <Button
+              fn={confirm}
+              message="Delete"
+              className="mb-2 rounded-full border border-red-500 bg-red-500 px-5 py-2 text-sm font-medium tracking-wider shadow-sm hover:bg-red-600 hover:shadow-lg md:mb-0"
+            />
           </div>
         </>
       </div>

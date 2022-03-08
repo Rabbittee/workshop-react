@@ -9,6 +9,8 @@ function Item({ item, onChange }) {
   const [editVal, setEditVal] = useState(item);
   const [showDialog, setShowDialog] = useState(false);
   const editLabel = editInput ? 'confirm' : 'edit';
+  const buttonClass =
+    'items-centerinline-flex flex items-center justify-center rounded-lg py-2 pl-4 pr-3 text-center text-sm font-medium text-gray-900 hover:bg-[#F7BE38]/90 focus:ring-4 focus:ring-[#F7BE38]/50 dark:focus:ring-[#F7BE38]/50';
 
   const toggleEdit = () => setEditInput(!editInput);
 
@@ -53,13 +55,20 @@ function Item({ item, onChange }) {
         )}
 
         <Button
+          size="25"
           logo={editInput ? 'greenCheck' : 'edit'}
-          onClick={toggleEdit}
-          label={editLabel}
-          Class="bg-gray-400"
+          fn={toggleEdit}
+          message={editLabel}
+          className={clsx(buttonClass, 'bg-gray-400')}
         />
 
-        <Button logo="trash" onClick={toggleDialog} label="delete" Class="bg-red-400" />
+        <Button
+          fn={toggleDialog}
+          size="25"
+          logo="trash"
+          message="delete"
+          className={clsx(buttonClass, 'bg-red-400')}
+        />
 
         {showDialog && <Dialog cancel={toggleDialog} confirm={handleDelete} />}
       </li>
