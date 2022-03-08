@@ -4,9 +4,9 @@ import Dialog from './Dialog';
 import Button from './Button';
 import Input from './Input';
 
-function Item({ child, onChange }) {
+function Item({ item, onChange }) {
   const [editInput, setEditInput] = useState(false);
-  const [editVal, setEditVal] = useState(child);
+  const [editVal, setEditVal] = useState(item);
   const [showDialog, setShowDialog] = useState(false);
   const editLabel = editInput ? 'confirm' : 'edit';
 
@@ -14,17 +14,17 @@ function Item({ child, onChange }) {
 
   const toggleDialog = () => setShowDialog(!showDialog);
 
-  const toggleChecked = () => onChange({ ...child, isDone: !child.isDone });
+  const toggleChecked = () => onChange({ ...item, isDone: !item.isDone });
 
   const handleEdit = (e) => {
-    const editItem = { ...child, val: e.target.value };
+    const editItem = { ...item, val: e.target.value };
     setEditVal(editItem);
     onChange(editItem);
     if (e.key === 'Enter') setEditInput(!editInput);
   };
 
   const handleDelete = () => {
-    onChange(child, true);
+    onChange(item, true);
     toggleDialog();
   };
 
@@ -36,7 +36,7 @@ function Item({ child, onChange }) {
     <>
       <li className="place-item-center my-5 mx-12 grid grid-cols-8 gap-4">
         <div className="flex items-center justify-center">
-          <input type="checkbox" checked={child.isDone} onChange={toggleChecked} />
+          <input type="checkbox" checked={item.isDone} onChange={toggleChecked} />
         </div>
 
         {editInput ? (
@@ -44,11 +44,11 @@ function Item({ child, onChange }) {
         ) : (
           <div
             className={clsx('col-span-4 flex items-center rounded bg-purple-100 pl-3', {
-              'line-through': child.isDone,
+              'line-through': item.isDone,
             })}
             onClick={toggleEdit}
           >
-            <span>{child.val}</span>
+            <span>{item.val}</span>
           </div>
         )}
 

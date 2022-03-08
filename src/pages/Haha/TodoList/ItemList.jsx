@@ -10,8 +10,8 @@ function ItemList({ list, changeItem, delItem }) {
 
   return (
     <ul className="mt-10 w-3/4 rounded-xl bg-red-300">
-      {list.map((child) => (
-        <Item key={child.id} child={child} onChange={onChange} />
+      {list.map((el) => (
+        <Item key={el.id} item={el} onChange={onChange} />
       ))}
     </ul>
   );
