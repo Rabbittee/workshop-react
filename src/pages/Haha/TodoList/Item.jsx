@@ -42,7 +42,12 @@ function Item({ item, onChange }) {
         </div>
 
         {editInput ? (
-          <Input item={editVal} onChange={handleEdit} onKeyDown={onKeyDown} Class="col-span-4" />
+          <Input
+            item={editVal}
+            onChange={handleEdit}
+            onKeyDown={onKeyDown}
+            className="col-span-4"
+          />
         ) : (
           <div
             className={clsx('col-span-4 flex items-center rounded bg-purple-100 pl-3', {

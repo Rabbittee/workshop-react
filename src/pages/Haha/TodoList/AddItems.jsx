@@ -29,7 +29,7 @@ function AddItems({ addItem }) {
         item={text}
         onChange={onChange}
         onKeyDown={onKeyDown}
-        Class="w-full"
+        className="w-full"
         label="input value"
       />
       <Button
