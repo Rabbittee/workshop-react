@@ -1,9 +1,9 @@
 import clsx from 'clsx';
 
-function Input({ item, onChange, onKeyDown, className, label }) {
+function Input({ inputVal, onChange, onKeyDown, className, label }) {
   return (
     <input
-      value={item.val}
+      value={inputVal.val}
       placeholder={label}
       onChange={onChange}
       onKeyDown={onKeyDown}

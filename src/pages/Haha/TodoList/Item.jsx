@@ -43,7 +43,7 @@ function Item({ item, edit, del }) {
 
         {editInput ? (
           <Input
-            item={editVal}
+            inputVal={editVal.val}
             onChange={handleEdit}
             onKeyDown={onKeyDown}
             className="col-span-4"

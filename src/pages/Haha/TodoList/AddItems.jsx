@@ -26,7 +26,7 @@ function AddItems({ addItem }) {
   return (
     <div className="flex items-center justify-center space-x-5">
       <Input
-        item={text}
+        inputVal={text.val}
         onChange={onChange}
         onKeyDown={onKeyDown}
         className="w-full"
