@@ -4,7 +4,7 @@ import Dialog from './Dialog';
 import Button from './Button';
 import Input from './Input';
 
-function Item({ item, onChange }) {
+function Item({ item, edit, del }) {
   const [editInput, setEditInput] = useState(false);
   const [editVal, setEditVal] = useState(item);
   const [showDialog, setShowDialog] = useState(false);
@@ -16,17 +16,17 @@ function Item({ item, onChange }) {
 
   const toggleDialog = () => setShowDialog(!showDialog);
 
-  const toggleChecked = () => onChange({ ...item, isDone: !item.isDone });
+  const toggleChecked = () => edit({ ...item, isDone: !item.isDone });
 
   const handleEdit = (e) => {
     const editItem = { ...item, val: e.target.value };
     setEditVal(editItem);
-    onChange(editItem);
+    edit(editItem);
     if (e.key === 'Enter') setEditInput(!editInput);
   };
 
   const handleDelete = () => {
-    onChange(item, true);
+    del(item);
     toggleDialog();
   };
 

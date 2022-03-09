@@ -2,16 +2,20 @@ import React from 'react';
 import Item from './Item';
 
 function ItemList({ list, changeItem, delItem }) {
-  const onChange = (val, remove) => {
-    const index = list.findIndex(({ id }) => val.id === id);
-    if (remove) return delItem(index);
-    changeItem(index, { ...val, isDone: val.isDone });
+  const findIndex = (val) => list.findIndex(({ id }) => val.id === id);
+
+  const editItem = (val) => {
+    changeItem(findIndex(val), { ...val, isDone: val.isDone });
+  };
+
+  const deleteItem = (val) => {
+    delItem(findIndex(val), { ...val, isDone: val.isDone });
   };
 
   return (
     <ul className="mt-10 w-3/4 rounded-xl bg-red-300">
       {list.map((el) => (
-        <Item key={el.id} item={el} onChange={onChange} />
+        <Item key={el.id} item={el} edit={editItem} del={deleteItem} />
       ))}
     </ul>
   );
