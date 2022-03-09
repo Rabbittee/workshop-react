@@ -2,7 +2,7 @@
  * @Author:Claire Li
  * @Date:2022-02-28 14:35:47
  * @LastEditors:Claire Li
- * @LastEditTime:2022-03-06 15:44:26
+ * @LastEditTime:2022-03-20 22:07:50
  * @Description:
  */
 // Q: Why should it have to import 'React'?
@@ -44,9 +44,7 @@ function TodoList(prop) {
 
   const taskList = tasks?.map((task) => (
     <Todo
-      name={task.name}
-      completed={task.completed}
-      id={task.id}
+      {...task}
       key={task.id}
       toggleTaskCompleted={toggleTaskCompleted}
       deleteTask={deleteTask}
