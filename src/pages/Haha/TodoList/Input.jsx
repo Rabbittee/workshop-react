@@ -3,7 +3,7 @@ import clsx from 'clsx';
 function Input({ inputVal, onChange, onKeyDown, className, label }) {
   return (
     <input
-      value={inputVal.val}
+      value={inputVal}
       placeholder={label}
       onChange={onChange}
       onKeyDown={onKeyDown}
