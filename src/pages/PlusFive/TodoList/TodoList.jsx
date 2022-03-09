@@ -2,7 +2,7 @@
  * @Author:Claire Li
  * @Date:2022-02-28 14:35:47
  * @LastEditors:Claire Li
- * @LastEditTime:2022-03-20 22:07:50
+ * @LastEditTime:2022-03-20 22:11:39
  * @Description:
  */
 // Q: Why should it have to import 'React'?
@@ -12,10 +12,10 @@ import Todo from './components/todo';
 import Form from './components/form';
 // import AddBtn from './components/addBtn';
 
-function TodoList(prop) {
-  // initial tasks value is prop.tasks (after object destructuring is tasks)
+function TodoList(props) {
+  // initial tasks value is props.tasks (after object destructuring is tasks)
   // useState returns tasks and setTasks(), use array destructuring to catch it
-  const [tasks, setTasks] = useState(prop.tasks);
+  const [tasks, setTasks] = useState(props.tasks);
 
   // pass this Fn to Form component to catch task typed in Form
   function addTask(name) {

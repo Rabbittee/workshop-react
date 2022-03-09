@@ -2,14 +2,13 @@
  * @Author:Claire Li
  * @Date:2022-03-05 17:07:38
  * @LastEditors:Claire Li
- * @LastEditTime:2022-03-06 15:43:58
+ * @LastEditTime:2022-03-09 22:04:38
  * @Description:
  */
-// Q: Why should it have to import 'React'?
 import { useState } from 'react';
 import AddBtn from './addBtn';
 
-function Form(prop) {
+function Form(props) {
   // set name initial value as '', and a function called setName() to modify name
   // useState() returns name and setName(), use array destructuring to capture them in separate variables
   const [name, setName] = useState('');
@@ -26,7 +25,7 @@ function Form(prop) {
       return;
     }
 
-    prop.addTask(name);
+    props.addTask(name);
     setName('');
   }
 
