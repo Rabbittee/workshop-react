@@ -75,7 +75,9 @@ function Item({ item, edit, del }) {
           className={clsx(buttonClass, 'bg-red-400')}
         />
 
-        {showDialog && <Dialog cancel={toggleDialog} confirm={handleDelete} />}
+        {showDialog && (
+          <Dialog cancel={toggleDialog} confirm={handleDelete} message="Do you sure delete?" />
+        )}
       </li>
       <div className="divide-x-8  divide-gray-900"></div>
     </>
