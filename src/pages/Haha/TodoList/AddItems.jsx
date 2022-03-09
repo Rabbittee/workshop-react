@@ -19,6 +19,7 @@ function AddItems({ addItem }) {
   };
 
   const onClick = () => {
+    if (!text.val) return;
     addItem(text);
     setText({ ...text, val: '', id: uuid() });
   };

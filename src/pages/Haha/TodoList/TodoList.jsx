@@ -5,7 +5,7 @@ import ItemList from './ItemList';
 function TodoList() {
   const [list, setList] = useState([]);
 
-  const addItem = (value) => setList((val) => [...val, value]);
+  const addItem = (value) => setList([...list, value]);
 
   const changeItem = (index, val) => {
     setList(list.map((el, i) => (index === i ? val : el)));
