@@ -3,13 +3,8 @@ import Input from './Input';
 import Button from './Button';
 import Dialog from './Dialog';
 
-const uuid = () =>
-  ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, (a) =>
-    (a ^ ((Math.random() * 16) >> (a / 4))).toString(16)
-  );
-
 function AddItems({ addItem }) {
-  const [text, setText] = useState({ val: '', isDone: false, id: uuid() });
+  const [text, setText] = useState({ val: '', isDone: false, id: Date.now() });
   const [showDialog, setShowDialog] = useState(false);
 
   const onChange = ({ target }) => {
@@ -23,7 +18,7 @@ function AddItems({ addItem }) {
   const onClick = () => {
     if (!text.val) return setShowDialog(!showDialog);
     addItem(text);
-    setText({ ...text, val: '', id: uuid() });
+    setText({ ...text, val: '', id: Date.now() });
   };
 
   return (
