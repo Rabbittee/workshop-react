@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import storage from './components/storage.js';
-import TodoForm from './components/TodoForm_test';
+import TodoForm from './components/TodoForm';
 import { ADD_TODO } from './components/constant.js';
 import clsx from 'clsx';
-import Button from './components/Button_test.jsx';
+import Button from './components/Button.jsx';
 
 function TodoList() {
   const [inputValue, setInputValue] = useState('');
