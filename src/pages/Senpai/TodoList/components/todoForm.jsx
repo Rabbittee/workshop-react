@@ -1,69 +1,63 @@
 import clsx from 'clsx';
 import { useState } from 'react';
-import Button from './button';
+import Button from './Button';
 
-function TodoForm({ item, formId, updateTodo, toggleDataState, deleteItem }) {
+function TodoForm({ item, updateTodo, toggleDataState, deleteItem }) {
   const [inputValue, setInputValue] = useState(item.text);
 
-  function handleSave(id, target, nextValue) {
-    updateTodo(nextValue, id);
-    toggleDataState(id, target);
-  }
   return (
-    <form className={clsx('h-full')}>
-      <ul className={clsx('flex items-center justify-start gap-2')}>
-        <li className={clsx('flex w-0 grow')}>
-          {!item.isEdit && (
-            <label>
-              <input type="checkbox" onClick={() => toggleDataState(formId, 'isDone')} />
-            </label>
-          )}
+    <>
+      <div className={clsx('flex w-0 grow')}>
+        {!item.isEdit && (
+          <label>
+            <input type="checkbox" onClick={() => toggleDataState(item.id, 'isDone')} />
+          </label>
+        )}
 
-          {item.isEdit ? (
-            <label>
-              <input
-                className={clsx('w-full text-cyan-700')}
-                type="text"
-                value={inputValue}
-                onInput={(e) => setInputValue(e.target.value.trim())}
-              />
-            </label>
-          ) : (
-            <p className={clsx('pl-1', 'overflow-hidden text-ellipsis whitespace-nowrap')}>
-              {inputValue}
-            </p>
-          )}
-        </li>
-        <li className="flex gap-1">
-          {item.isDone ? (
-            <p className={clsx('w-20 rounded-md', 'bg-stone-800 text-lime-300')}>Done</p>
-          ) : item.isEdit ? (
-            <Button
-              fn={handleSave}
-              message="Save"
-              customStyle="bg-emerald-900 text-emerald-100 hover:bg-emerald-100 hover:text-emerald-900"
-              formId={formId}
-              target="isEdit"
-              nextValue={inputValue}
+        {item.isEdit ? (
+          <label className="w-full pr-2">
+            <input
+              className={clsx('w-full bg-cyan-600 px-2 text-white')}
+              type="text"
+              value={inputValue}
+              onInput={(e) => setInputValue(e.target.value)}
             />
-          ) : (
-            <Button
-              fn={toggleDataState}
-              message="Edit"
-              customStyle="bg-emerald-600 text-emerald-100 hover:bg-emerald-100 hover:text-emerald-600"
-              formId={formId}
-              target="isEdit"
-            />
-          )}
+          </label>
+        ) : (
+          <p
+            onDoubleClick={() => toggleDataState(item.id, 'isEdit')}
+            className={clsx('pl-1', 'overflow-hidden text-ellipsis whitespace-nowrap')}
+          >
+            {inputValue}
+          </p>
+        )}
+      </div>
+      <div className="flex gap-1">
+        {item.isDone ? (
+          <p className={clsx('w-20 rounded-md', 'bg-stone-800 text-lime-300')}>Done</p>
+        ) : item.isEdit ? (
           <Button
-            fn={deleteItem}
-            message="Delete"
-            customStyle="text-rose-100 bg-rose-600 hover:text-rose-600 hover:bg-rose-100"
-            formId={formId}
+            fn={() => {
+              updateTodo(inputValue.trim(), item.id);
+              toggleDataState(item.id, 'isEdit');
+            }}
+            message="Save"
+            customStyle="bg-emerald-900 text-emerald-100 hover:bg-emerald-100 hover:text-emerald-900"
           />
-        </li>
-      </ul>
-    </form>
+        ) : (
+          <Button
+            fn={() => toggleDataState(item.id, 'isEdit')}
+            message="Edit"
+            customStyle="bg-emerald-600 text-emerald-100 hover:bg-emerald-100 hover:text-emerald-600"
+          />
+        )}
+        <Button
+          fn={() => deleteItem(item.id)}
+          message="Delete"
+          customStyle="text-rose-100 bg-rose-600 hover:text-rose-600 hover:bg-rose-100"
+        />
+      </div>
+    </>
   );
 }
 export default TodoForm;

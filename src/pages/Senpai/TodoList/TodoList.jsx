@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import storage from './components/storage.js';
-import TodoForm from './components/todoForm';
+import TodoForm from './components/TodoForm';
 import { ADD_TODO } from './components/constant.js';
 import clsx from 'clsx';
-import Button from './components/button.jsx';
+import Button from './components/Button.jsx';
 
 function TodoList() {
   const [inputValue, setInputValue] = useState('');
@@ -45,7 +45,7 @@ function TodoList() {
     storage().set(dataList);
   }, [dataList]);
   return (
-    <div className="mx-auto w-full max-w-sm">
+    <div className="mx-auto w-full max-w-lg">
       <h1 className="h-full py-5 text-center text-3xl text-gray-300">here is pencil's todo list</h1>
       <form
         className={clsx(
@@ -70,10 +70,9 @@ function TodoList() {
           />
         </label>
         <Button
-          fn={addTodo}
+          fn={() => addTodo(inputValue)}
           message="Submit"
           customStyle="hover:bg-white hover:text-cyan-700 h-full"
-          inputValue={inputValue}
         />
       </form>
       <ul className={clsx('flex flex-col gap-3', 'text-lg text-gray-300')}>
@@ -85,11 +84,14 @@ function TodoList() {
           dataList.map((item) => (
             <li
               key={`list_${item.id}`}
-              className={clsx('h-full w-full py-1 px-4', 'bg-cyan-700 text-center', 'rounded-b-md')}
+              className={clsx(
+                'flex h-full w-full items-center py-1 px-4',
+                'bg-cyan-700 text-center',
+                'rounded-md first:rounded-t-none'
+              )}
             >
               <TodoForm
                 item={item}
-                formId={item.id}
                 updateTodo={updateTodo}
                 toggleDataState={toggleDataState}
                 deleteItem={deleteItem}

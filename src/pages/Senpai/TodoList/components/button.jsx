@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 
-export const Button = ({ fn, message, customStyle, ...args }) => {
+export const Button = ({ fn, message, customStyle }) => {
   return (
     <>
       <button
@@ -10,7 +10,7 @@ export const Button = ({ fn, message, customStyle, ...args }) => {
           'min-h-min w-20 rounded-md px-2',
           'border border-solid bg-cyan-700 text-white'
         )}
-        onClick={() => fn(...Object.values({ ...args }))}
+        onClick={fn}
       >
         {message}
       </button>
