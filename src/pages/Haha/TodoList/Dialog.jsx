@@ -1,5 +1,11 @@
 import Button from './Button';
+// import { useSelector } from 'react-redux';
+// import { useEffect } from 'react';
+
 function Dialog({ cancel, confirm, message }) {
+  // const name = useSelector((state) => state.name);
+  // useEffect(() => console.log(name));
+
   return (
     <div
       className="min-w-screen animated fadeIn faster fixed  inset-0  left-0 top-0 z-50 flex h-screen items-center justify-center bg-cover bg-center bg-no-repeat outline-none focus:outline-none"
