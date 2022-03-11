@@ -1,11 +1,9 @@
 import { useState } from 'react';
 import Input from './Input';
 import Button from './Button';
-import Dialog from './Dialog';
 
-function AddItems({ addItem }) {
+function AddItems({ addItem, handleDialog }) {
   const [text, setText] = useState({ val: '', isDone: false, id: Date.now() });
-  const [showDialog, setShowDialog] = useState(false);
 
   const onChange = ({ target }) => {
     setText({ ...text, val: target.value });
@@ -16,7 +14,7 @@ function AddItems({ addItem }) {
   };
 
   const onClick = () => {
-    if (!text.val) return setShowDialog(!showDialog);
+    if (!text.val) return handleDialog('Don"t add empty item');
     addItem(text);
     setText({ ...text, val: '', id: Date.now() });
   };
@@ -37,9 +35,6 @@ function AddItems({ addItem }) {
         message="add"
         className="inline-flex items-center rounded-lg bg-[#78abb19d] p-2 px-5 py-2.5 text-center text-sm font-medium text-gray-900 hover:bg-[#F7BE38]/90 focus:ring-4 focus:ring-[#F7BE38]/50 dark:focus:ring-[#F7BE38]/50"
       />
-      {showDialog && (
-        <Dialog message="Don't add empty item" cancel={() => setShowDialog(!showDialog)} />
-      )}
     </div>
   );
 }
