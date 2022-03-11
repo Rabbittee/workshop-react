@@ -1,20 +1,18 @@
 import { useState } from 'react';
 import clsx from 'clsx';
-import Dialog from './Dialog';
 import Button from './Button';
 import Input from './Input';
 
-function Item({ item, edit, del }) {
+function Item({ item, edit, dialog }) {
   const [editInput, setEditInput] = useState(false);
   const [editVal, setEditVal] = useState(item);
-  const [showDialog, setShowDialog] = useState(false);
   const editLabel = editInput ? 'confirm' : 'edit';
   const buttonClass =
     'items-centerinline-flex flex items-center justify-center rounded-lg py-2 pl-4 pr-3 text-center text-sm font-medium text-gray-900 hover:bg-[#F7BE38]/90 focus:ring-4 focus:ring-[#F7BE38]/50 dark:focus:ring-[#F7BE38]/50';
 
   const toggleEdit = () => setEditInput(!editInput);
 
-  const toggleDialog = () => setShowDialog(!showDialog);
+  const toggleDialog = () => dialog(item);
 
   const toggleChecked = () => edit({ ...item, isDone: !item.isDone });
 
@@ -23,11 +21,6 @@ function Item({ item, edit, del }) {
     setEditVal(editItem);
     edit(editItem);
     if (e.key === 'Enter') setEditInput(!editInput);
-  };
-
-  const handleDelete = () => {
-    del(item);
-    toggleDialog();
   };
 
   const onKeyDown = (e) => {
@@ -74,10 +67,6 @@ function Item({ item, edit, del }) {
           message="delete"
           className={clsx(buttonClass, 'bg-red-400')}
         />
-
-        {showDialog && (
-          <Dialog cancel={toggleDialog} confirm={handleDelete} message="Do you sure delete?" />
-        )}
       </li>
       <div className="divide-x-8  divide-gray-900"></div>
     </>
