@@ -27,7 +27,11 @@ function TodoList() {
   const addItem = (value) => setList([...list, value]);
 
   const changeItem = (index, val) => {
-    setList(list.map((el, i) => (index === i ? val : el)));
+    setList((items) => {
+      const newItems = [...items];
+      newItems[index] = val;
+      return newItems;
+    });
   };
 
   const delItem = () => {
