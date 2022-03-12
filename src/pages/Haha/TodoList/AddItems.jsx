@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import Input from './Input';
-import Button from './Button';
+import Input from './components/Input';
+import Button from './components/Button';
 
-function AddItems({ addItem, handleDialog }) {
+function AddItems({ add, dialog }) {
   const [text, setText] = useState({ val: '', isDone: false, id: Date.now() });
 
   const onChange = ({ target }) => {
@@ -14,8 +14,8 @@ function AddItems({ addItem, handleDialog }) {
   };
 
   const onClick = () => {
-    if (!text.val) return handleDialog('Don"t add empty item');
-    addItem(text);
+    if (!text.val) return dialog('Don"t add empty item');
+    add(text);
     setText({ ...text, val: '', id: Date.now() });
   };
 

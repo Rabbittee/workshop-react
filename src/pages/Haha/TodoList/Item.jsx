@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import clsx from 'clsx';
-import Button from './Button';
-import Input from './Input';
+import Button from './components/Button';
+import Input from './components/Input';
 
 function Item({ item, edit, dialog }) {
   const [editInput, setEditInput] = useState(false);

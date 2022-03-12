@@ -1,21 +1,21 @@
 import React from 'react';
 import Item from './Item';
 
-function ItemList({ list, changeItem, handleDialog }) {
-  const findIndex = (val) => list.findIndex(({ id }) => val.id === id);
+function ItemList({ list, change, dialog }) {
+  const index = (val) => list.findIndex(({ id }) => val.id === id);
 
-  const editItem = (val) => {
-    changeItem(findIndex(val), { ...val, isDone: val.isDone });
+  const edit = (val) => {
+    change(index(val), { ...val, isDone: val.isDone });
   };
 
-  const toggleDialog = (item) => {
-    handleDialog('Do you sure delete?', findIndex(item), { ...item, isDone: item.isDone });
+  const handleDialog = (item) => {
+    dialog('Do you sure delete?', index(item), { ...item, isDone: item.isDone });
   };
 
   return (
     <ul className="mt-10 w-3/4 rounded-xl bg-red-300">
       {list.map((el) => (
-        <Item key={el.id} item={el} edit={editItem} dialog={toggleDialog} />
+        <Item key={el.id} item={el} edit={edit} dialog={handleDialog} />
       ))}
     </ul>
   );

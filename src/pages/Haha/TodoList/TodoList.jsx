@@ -1,18 +1,18 @@
 import { useState } from 'react';
-import AddItems from './AddItems';
-import ItemList from './ItemList';
-import Dialog from './Dialog';
+import Add from './AddItems';
+import Tasks from './ItemList';
+import Dialog from './components/Dialog';
 
 function TodoList() {
   const [list, setList] = useState([]);
   const [index, setIndex] = useState();
   const [dialogContent, setDialogContent] = useState({
-    dialogStatus: false,
     message: '',
+    dialogStatus: false,
     deleteStatus: false,
   });
 
-  const toggleDialog = (message, index) => {
+  const handleDialog = (message, index) => {
     const { dialogStatus, deleteStatus } = dialogContent;
     setIndex(index);
     if (index !== undefined)
@@ -24,9 +24,9 @@ function TodoList() {
     else setDialogContent({ message, dialogStatus: !dialogStatus });
   };
 
-  const addItem = (value) => setList([...list, value]);
+  const add = (value) => setList([...list, value]);
 
-  const changeItem = (index, val) => {
+  const change = (index, val) => {
     setList((items) => {
       const newItems = [...items];
       newItems[index] = val;
@@ -47,12 +47,15 @@ function TodoList() {
   return (
     <div className="flex h-screen flex-col items-center bg-blue-300 font-Amatic">
       <div className="my-10 text-3xl font-black text-yellow-300">Todolist</div>
-      <AddItems addItem={addItem} handleDialog={toggleDialog} className="bg-red-300" />
-      <ItemList list={list} changeItem={changeItem} handleDialog={toggleDialog} />
+
+      <Add add={add} dialog={handleDialog} className="bg-red-300" />
+
+      <Tasks list={list} change={change} dialog={handleDialog} />
+
       {dialogContent.dialogStatus && (
         <Dialog
           message={dialogContent.message}
-          cancel={toggleDialog}
+          cancel={handleDialog}
           confirm={dialogContent.deleteStatus && delItem}
         />
       )}
