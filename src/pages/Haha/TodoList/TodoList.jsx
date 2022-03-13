@@ -15,13 +15,15 @@ function TodoList() {
   const handleDialog = (message, index) => {
     const { dialogStatus, deleteStatus } = dialogContent;
     setIndex(index);
-    if (index !== undefined)
+    if (index !== undefined) {
       setDialogContent({
         message,
         dialogStatus: !dialogStatus,
         deleteStatus: !deleteStatus,
       });
-    else setDialogContent({ message, dialogStatus: !dialogStatus });
+    } else {
+      setDialogContent({ message, dialogStatus: !dialogStatus });
+    }
   };
 
   const add = (value) => setList([...list, value]);
