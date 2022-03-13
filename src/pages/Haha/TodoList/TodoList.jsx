@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import Add from './AddItems';
-import Tasks from './ItemList';
+import AddItems from './AddItems';
+import ItemList from './ItemList';
 import Dialog from './components/Dialog';
 
 function TodoList() {
@@ -50,9 +50,9 @@ function TodoList() {
     <div className="flex h-screen flex-col items-center bg-blue-300 font-Amatic">
       <div className="my-10 text-3xl font-black text-yellow-300">Todolist</div>
 
-      <Add add={add} dialog={handleDialog} className="bg-red-300" />
+      <AddItems add={add} dialog={handleDialog} className="bg-red-300" />
 
-      <Tasks list={list} change={change} dialog={handleDialog} />
+      <ItemList list={list} change={change} dialog={handleDialog} />
 
       {dialogContent.dialogStatus && (
         <Dialog
