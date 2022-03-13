@@ -50,9 +50,9 @@ function TodoList() {
     <div className="flex h-screen flex-col items-center bg-blue-300 font-Amatic">
       <div className="my-10 text-3xl font-black text-yellow-300">Todolist</div>
 
-      <AddItems add={add} dialog={handleDialog} className="bg-red-300" />
+      <AddItems add={add} handleDialog={handleDialog} className="bg-red-300" />
 
-      <ItemList list={list} change={change} dialog={handleDialog} />
+      <ItemList list={list} change={change} handleDialog={handleDialog} />
 
       {dialogContent.dialogStatus && (
         <Dialog

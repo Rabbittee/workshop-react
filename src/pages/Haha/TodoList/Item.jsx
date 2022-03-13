@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import Button from './components/Button';
 import Input from './components/Input';
 
-function Item({ item, edit, dialog }) {
+function Item({ item, edit, handleDialog }) {
   const [editInput, setEditInput] = useState(false);
   const [editVal, setEditVal] = useState(item);
   const editLabel = editInput ? 'confirm' : 'edit';
@@ -12,7 +12,7 @@ function Item({ item, edit, dialog }) {
 
   const toggleEdit = () => setEditInput(!editInput);
 
-  const toggleDialog = () => dialog(item);
+  const toggleDialog = () => handleDialog(item);
 
   const toggleChecked = () => edit({ ...item, isDone: !item.isDone });
 

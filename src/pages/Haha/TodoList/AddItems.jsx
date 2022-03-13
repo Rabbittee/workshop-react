@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Input from './components/Input';
 import Button from './components/Button';
 
-function AddItems({ add, dialog }) {
+function AddItems({ add, handleDialog }) {
   const [text, setText] = useState({ val: '', isDone: false, id: Date.now() });
 
   const onChange = ({ target }) => {
@@ -14,7 +14,7 @@ function AddItems({ add, dialog }) {
   };
 
   const onClick = () => {
-    if (!text.val) return dialog('Don"t add empty item');
+    if (!text.val) return handleDialog('Don"t add empty item');
     add(text);
     setText({ ...text, val: '', id: Date.now() });
   };
