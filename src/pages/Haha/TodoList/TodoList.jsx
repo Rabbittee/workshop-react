@@ -8,21 +8,21 @@ function TodoList() {
   const [index, setIndex] = useState();
   const [dialogContent, setDialogContent] = useState({
     message: '',
-    dialogStatus: false,
-    deleteStatus: false,
+    alert: false,
+    confirm: false,
   });
 
   const handleDialog = (message, index) => {
-    const { dialogStatus, deleteStatus } = dialogContent;
+    const { alert, confirm } = dialogContent;
     setIndex(index);
     if (index !== undefined) {
       setDialogContent({
         message,
-        dialogStatus: !dialogStatus,
-        deleteStatus: !deleteStatus,
+        alert: !alert,
+        confirm: !confirm,
       });
     } else {
-      setDialogContent({ message, dialogStatus: !dialogStatus });
+      setDialogContent({ message, alert: !alert });
     }
   };
 
@@ -37,12 +37,12 @@ function TodoList() {
   };
 
   const delItem = () => {
-    const { dialogStatus, deleteStatus } = dialogContent;
+    const { alert, confirm } = dialogContent;
     setList(() => list.filter((el, i) => i !== index));
     setDialogContent({
       ...dialogContent,
-      dialogStatus: !dialogStatus,
-      deleteStatus: !deleteStatus,
+      alert: !alert,
+      confirm: !confirm,
     });
   };
 
@@ -54,11 +54,11 @@ function TodoList() {
 
       <ItemList list={list} change={change} handleDialog={handleDialog} />
 
-      {dialogContent.dialogStatus && (
+      {dialogContent.alert && (
         <Dialog
           message={dialogContent.message}
           cancel={handleDialog}
-          confirm={dialogContent.deleteStatus && delItem}
+          confirm={dialogContent.confirm && delItem}
         />
       )}
     </div>
