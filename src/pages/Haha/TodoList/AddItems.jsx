@@ -29,7 +29,7 @@ function AddItems({ add, dialog }) {
         label="input value"
       />
       <Button
-        fn={onClick}
+        onClick={onClick}
         size="30"
         logo="add"
         message="add"

@@ -55,13 +55,13 @@ function Item({ item, edit, dialog }) {
         <Button
           size="25"
           logo={editInput ? 'greenCheck' : 'edit'}
-          fn={toggleEdit}
+          onClick={toggleEdit}
           message={editLabel}
           className={clsx(buttonClass, 'bg-gray-400')}
         />
 
         <Button
-          fn={toggleDialog}
+          onClick={toggleDialog}
           size="25"
           logo="trash"
           message="delete"
