@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { useState } from 'react';
-import Button from './Button';
+import Button from './components/Button';
 
 function TodoForm({ item, updateTodo, toggleDataState, deleteItem }) {
   const [inputValue, setInputValue] = useState(item.text);
@@ -10,7 +10,11 @@ function TodoForm({ item, updateTodo, toggleDataState, deleteItem }) {
       <div className={clsx('flex w-0 grow')}>
         {!item.isEdit && (
           <label>
-            <input type="checkbox" onClick={() => toggleDataState(item.id, 'isDone')} />
+            <input
+              checked={item.isDone}
+              type="checkbox"
+              onClick={() => toggleDataState(item.id, 'isDone')}
+            />
           </label>
         )}
 
@@ -32,6 +36,7 @@ function TodoForm({ item, updateTodo, toggleDataState, deleteItem }) {
           </p>
         )}
       </div>
+
       <div className="flex gap-1">
         {item.isDone ? (
           <p className={clsx('w-20 rounded-md', 'bg-stone-800 text-lime-300')}>Done</p>
