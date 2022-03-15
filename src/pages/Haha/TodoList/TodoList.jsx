@@ -5,17 +5,17 @@ import Dialog from './components/Dialog';
 
 function TodoList() {
   const [list, setList] = useState([]);
-  const [index, setIndex] = useState();
+  const [id, setID] = useState();
   const [dialogContent, setDialogContent] = useState({
     message: '',
     alert: false,
     confirm: false,
   });
 
-  const handleDialog = (message, index) => {
+  const handleDialog = (message, id) => {
     const { alert, confirm } = dialogContent;
-    setIndex(index);
-    if (index !== undefined) {
+    setID(id);
+    if (id !== undefined) {
       setDialogContent({
         message,
         alert: !alert,
@@ -38,7 +38,7 @@ function TodoList() {
 
   const delItem = () => {
     const { alert, confirm } = dialogContent;
-    setList(() => list.filter((el, i) => i !== index));
+    setList(() => list.filter((el) => el.id !== id));
     setDialogContent({
       ...dialogContent,
       alert: !alert,

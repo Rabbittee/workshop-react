@@ -8,8 +8,8 @@ function ItemList({ list, change, handleDialog }) {
     change(index(val), { ...val, isDone: val.isDone });
   };
 
-  const onDialog = (item) => {
-    handleDialog('Do you sure delete?', index(item), { ...item, isDone: item.isDone });
+  const onDialog = ({id}) => {
+    handleDialog('Do you sure delete?', id);
   };
 
   return (
