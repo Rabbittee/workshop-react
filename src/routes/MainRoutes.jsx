@@ -11,6 +11,7 @@ import PlusFive from 'pages/PlusFive';
 import Senpai from 'pages/Senpai';
 import White from 'pages/White';
 import Husky from 'pages/Husky';
+import Huibizhang from 'pages/huibizhang';
 
 function MainRouter() {
   return (
@@ -28,6 +29,7 @@ function MainRouter() {
         <Route path="senpai/*" element={<Senpai />} />
         <Route path="white/*" element={<White />} />
         <Route path="husky/*" element={<Husky />} />
+        <Route path="huibizhang/*" element={<Huibizhang />} />
 
         <Route path="*" element={<Navigate to="/" />} />
       </Route>
