@@ -1,9 +1,18 @@
+import { useEffect, useRef } from 'react';
+
 import { Icon } from './components/icon';
 import { Input } from './components/utils';
 
 function EditToggle({ task, onClick, editTask }) {
+  const inputRef = useRef(null);
+  useEffect(() => {
+    inputRef.current !== null && inputRef.current.focus();
+  }, [task]);
+
   if (task.edit) {
-    return <Input value={task.editTitle} onInput={(e) => editTask(e.target.value)} />;
+    return (
+      <Input value={task.editTitle} onInput={(e) => editTask(e.target.value)} inputRef={inputRef} />
+    );
   }
   return (
     <label className="flex flex-1 items-center space-x-3 pl-1">

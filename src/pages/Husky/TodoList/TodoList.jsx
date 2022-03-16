@@ -50,6 +50,7 @@ function TodoList() {
       if (task.id === id) {
         task.edit && task.editTitle !== '' && (task.title = task.editTitle);
         task.edit = !task.edit;
+        return { ...task };
       }
       return task;
     });

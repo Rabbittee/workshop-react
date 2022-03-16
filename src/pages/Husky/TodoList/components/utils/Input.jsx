@@ -1,4 +1,4 @@
-export function Input({ value, placeholder, onInput, icon = false }) {
+export function Input({ value, placeholder, onInput, inputRef, icon = false }) {
   return (
     <input
       type="text"
@@ -9,6 +9,7 @@ export function Input({ value, placeholder, onInput, icon = false }) {
       value={value || ''}
       placeholder={placeholder}
       onInput={onInput}
+      ref={inputRef}
     />
   );
 }
