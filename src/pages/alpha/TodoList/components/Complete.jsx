@@ -1,7 +1,10 @@
 import { STATUS } from '../constant';
 import { List } from './List';
+import { useTodoList } from './TodoListContext';
 
-export function Complete({ list, toggleStatus, onDelete }) {
+export function Complete() {
+  const { list, toggleStatus, onDelete } = useTodoList();
+
   return (
     <List
       title="Complete"
