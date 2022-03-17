@@ -31,28 +31,31 @@ function TodoList() {
 
   function editTask(id, newTitle) {
     const newTodoList = todoList.map((task) => {
-      task.id === id && (task.editTitle = newTitle);
-      return task;
+      if (task.id !== id) return task;
+
+      task.editTitle = newTitle;
+      return { ...task };
     });
     setTodoList(newTodoList);
   }
 
   function toggleTask(id) {
     const newTodoList = todoList.map((task) => {
-      task.id === id && (task.status = !task.status);
-      return task;
+      if (task.id !== id) return task;
+
+      task.status = !task.status;
+      return { ...task };
     });
     setTodoList(newTodoList);
   }
 
   function toggleEditTask(id) {
     const newTodoList = todoList.map((task) => {
-      if (task.id === id) {
-        task.edit && task.editTitle !== '' && (task.title = task.editTitle);
-        task.edit = !task.edit;
-        return { ...task };
-      }
-      return task;
+      if (task.id !== id) return task;
+
+      task.edit && task.editTitle !== '' && (task.title = task.editTitle);
+      task.edit = !task.edit;
+      return { ...task };
     });
     setTodoList(newTodoList);
   }
