@@ -1,7 +1,12 @@
+import { useContext } from 'react';
+
+import { NewTalkContext } from './TodoList';
 import { Icon } from './components/icon';
 import { Input, Button } from './components/utils';
 
-export function Add({ setNewTalk, newTalk, addClick }) {
+export function Add() {
+  const { value, update, click } = useContext(NewTalkContext);
+
   return (
     <div className="flex gap-2">
       <div className="relative">
@@ -15,13 +20,13 @@ export function Add({ setNewTalk, newTalk, addClick }) {
           />
         </span>
         <Input
-          value={newTalk}
+          value={value}
           placeholder="new task describe"
-          onInput={(e) => setNewTalk(e.target.value)}
+          onInput={(e) => update(e.target.value)}
           icon={true}
         />
       </div>
-      <Button text="add" onClick={addClick} />
+      <Button text="add" onClick={click} />
     </div>
   );
 }

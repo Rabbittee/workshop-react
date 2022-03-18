@@ -1,8 +1,10 @@
-import { useState } from 'react';
+import { useState, createContext } from 'react';
 
 import { List } from './components/utils';
 import { Item } from './Item';
 import { Add } from './Add';
+
+export const NewTalkContext = createContext();
 
 function TodoList() {
   const [newTalk, setNewTalk] = useState('');
@@ -60,24 +62,30 @@ function TodoList() {
     setTodoList(newTodoList);
   }
 
+  const addContext = {
+    value: newTalk,
+    update: setNewTalk,
+    click: addTask,
+  };
+
   return (
     <div className="flex h-screen w-full flex-col items-center gap-4 bg-slate-500 pt-12">
       {/* add */}
-      <Add setNewTalk={setNewTalk} newTalk={newTalk} addClick={addTask} />
+      <NewTalkContext.Provider value={addContext}>
+        <Add />
+      </NewTalkContext.Provider>
 
       {/* list */}
       <List>
         {todoList.map((task) => {
-          return (
-            <Item
-              key={task.id}
-              task={task}
-              clickDelete={() => deleteTask(task.id)}
-              editTask={(newTitle) => editTask(task.id, newTitle)}
-              onClick={() => toggleTask(task.id)}
-              clickEdit={() => toggleEditTask(task.id)}
-            />
-          );
+          const methods = {
+            clickDelete: () => deleteTask(task.id),
+            editTask: (newTitle) => editTask(task.id, newTitle),
+            onClick: () => toggleTask(task.id),
+            clickEdit: () => toggleEditTask(task.id),
+          };
+
+          return <Item key={task.id} task={task} methods={methods} />;
         })}
       </List>
     </div>

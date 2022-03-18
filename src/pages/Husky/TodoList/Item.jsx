@@ -1,13 +1,25 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, createContext, useContext } from 'react';
 
 import { Icon } from './components/icon';
 import { Input } from './components/utils';
 
-function EditToggle({ task, onClick, editTask }) {
+const ItemContext = createContext();
+
+const useAutoFocusInput = (task) => {
   const inputRef = useRef(null);
   useEffect(() => {
     inputRef.current !== null && inputRef.current.focus();
   }, [task]);
+
+  return inputRef;
+};
+
+function EditToggle() {
+  const {
+    task,
+    methods: { onClick, editTask },
+  } = useContext(ItemContext);
+  const inputRef = useAutoFocusInput(task);
 
   if (task.edit) {
     return (
@@ -21,23 +33,36 @@ function EditToggle({ task, onClick, editTask }) {
         className="bg-check h-6 w-6 rounded-md border border-gray-300 bg-white checked:border-transparent focus:outline-none"
         onChange={onClick}
       />
-      <span className={'font-normal text-gray-700' + (task.status ? ' line-through' : '')}>
+      <span className={'font-normal text-gray-700' + (task.status && ' line-through')}>
         {task.title}
       </span>
     </label>
   );
 }
 
-export function Item({ task, onClick, clickDelete, clickEdit, editTask }) {
+function Buttons() {
+  const {
+    task,
+    methods: { clickEdit, clickDelete },
+  } = useContext(ItemContext);
+
   return (
-    <li className="mb-2 flex flex-row border-gray-400">
-      <div className="flex flex-1 transform select-none items-center gap-4 rounded-md bg-white p-4 shadow transition duration-500 ease-in-out hover:-translate-y-1 hover:shadow-lg">
-        <EditToggle task={task} onClick={onClick} editTask={editTask} />
-        <button className="flex w-12 justify-end gap-2 text-right">
-          {!task.status && <Icon.Edit className="h-5 w-5 text-gray-400" onClick={clickEdit} />}
-          <Icon.Delete className="h-5 w-5 text-gray-400" onClick={clickDelete} />
-        </button>
-      </div>
-    </li>
+    <button className="flex w-12 justify-end gap-2 text-right">
+      {!task.status && <Icon.Edit className="h-5 w-5 text-gray-400" onClick={clickEdit} />}
+      <Icon.Delete className="h-5 w-5 text-gray-400" onClick={clickDelete} />
+    </button>
+  );
+}
+
+export function Item(props) {
+  return (
+    <ItemContext.Provider value={props}>
+      <li className="mb-2 flex flex-row border-gray-400">
+        <div className="flex flex-1 transform select-none items-center gap-4 rounded-md bg-white p-4 shadow transition duration-500 ease-in-out hover:-translate-y-1 hover:shadow-lg">
+          <EditToggle />
+          <Buttons />
+        </div>
+      </li>
+    </ItemContext.Provider>
   );
 }
