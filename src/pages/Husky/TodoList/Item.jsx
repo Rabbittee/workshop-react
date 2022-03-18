@@ -1,9 +1,8 @@
-import { useEffect, useRef, createContext, useContext } from 'react';
+import { useEffect, useRef } from 'react';
 
 import { Icon } from './components/icon';
 import { Input } from './components/utils';
-
-const ItemContext = createContext();
+import { ItemContext, useItemContext } from './todoContext';
 
 const useAutoFocusInput = (task) => {
   const inputRef = useRef(null);
@@ -18,7 +17,7 @@ function EditToggle() {
   const {
     task,
     methods: { onClick, editTask },
-  } = useContext(ItemContext);
+  } = useItemContext();
   const inputRef = useAutoFocusInput(task);
 
   if (task.edit) {
@@ -44,7 +43,7 @@ function Buttons() {
   const {
     task,
     methods: { clickEdit, clickDelete },
-  } = useContext(ItemContext);
+  } = useItemContext();
 
   return (
     <button className="flex w-12 justify-end gap-2 text-right">
