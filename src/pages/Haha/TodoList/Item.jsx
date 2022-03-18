@@ -20,11 +20,11 @@ function Item({ item, edit, handleDialog }) {
     const editItem = { ...item, val: e.target.value };
     setEditVal(editItem);
     edit(editItem);
-    if (e.key === 'Enter') setEditInput(!editInput);
+    e.key === 'Enter' && setEditInput(!editInput);
   };
 
   const onKeyDown = (e) => {
-    if (e.key === 'Enter') return handleEdit(e);
+    e.key === 'Enter' && handleEdit(e);
   };
 
   return (

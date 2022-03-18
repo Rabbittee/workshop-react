@@ -10,7 +10,7 @@ function AddItems({ add, handleDialog }) {
   };
 
   const onKeyDown = ({ key }) => {
-    if (key === 'Enter') return onClick();
+    key === 'Enter' && onClick();
   };
 
   const onClick = () => {
