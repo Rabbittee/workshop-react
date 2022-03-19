@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import AddItems from './AddItems';
 import ItemList from './ItemList';
-import Dialog from './components/Dialog';
+import Dialog from './components/Dialog/Dialog';
 
 function TodoList() {
   const [list, setList] = useState([]);
