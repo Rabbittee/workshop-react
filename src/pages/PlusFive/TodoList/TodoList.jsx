@@ -2,7 +2,7 @@
  * @Author:Claire Li
  * @Date:2022-02-28 14:35:47
  * @LastEditors:Claire Li
- * @LastEditTime:2022-03-20 22:13:14
+ * @LastEditTime:2022-03-20 22:16:14
  * @Description:
  */
 // Q: Why should it have to import 'React'?
@@ -40,12 +40,12 @@ function TodoList(props) {
   function editTask(id, newName) {
     const editedTaskList = tasks.map((task) => {
       if (id === task.id) {
-        return {...task, name: newName}
+        return { ...task, name: newName };
       }
 
-      return task
-    })
-    setTasks(editedTaskList)
+      return task;
+    });
+    setTasks(editedTaskList);
   }
 
   function deleteTask(id) {
