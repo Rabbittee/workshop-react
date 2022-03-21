@@ -5,8 +5,9 @@
 4. 編輯 todo item
 
 ### next step
-1. 重構 todo list (useContext)
-2. 練習 useEffect(?)
+1. checkbox 的 bug (點擊時會直接消失變成編輯框，應該要留住它～～～)
+2. 重構 todo list (useContext)
+3. 練習 useEffect(?)
 
 ~~還未使用 local storage 儲存 todo item~~
 
