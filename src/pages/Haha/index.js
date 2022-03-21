@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import Layout from './Layout';
 import TodoList from './TodoList';
+import Refactor from './Refactor';
 
 function Haha() {
   return (
@@ -8,6 +9,7 @@ function Haha() {
       <Route path="/" element={<Layout />}>
         <Route index element={<TodoList />} />
         <Route path="todo" element={<TodoList />} />
+        <Route path="refactor" element={<Refactor />} />
       </Route>
     </Routes>
   );
