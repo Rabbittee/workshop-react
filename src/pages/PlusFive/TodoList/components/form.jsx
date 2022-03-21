@@ -2,11 +2,11 @@
  * @Author:Claire Li
  * @Date:2022-03-05 17:07:38
  * @LastEditors:Claire Li
- * @LastEditTime:2022-03-09 22:04:38
+ * @LastEditTime:2022-03-22 00:21:04
  * @Description:
  */
 import { useState } from 'react';
-import AddBtn from './addBtn';
+import AddBtn from './AddBtn';
 
 function Form(props) {
   // set name initial value as '', and a function called setName() to modify name

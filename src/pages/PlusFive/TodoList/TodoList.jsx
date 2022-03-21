@@ -2,14 +2,14 @@
  * @Author:Claire Li
  * @Date:2022-02-28 14:35:47
  * @LastEditors:Claire Li
- * @LastEditTime:2022-03-20 22:16:14
+ * @LastEditTime:2022-03-22 00:19:48
  * @Description:
  */
 // Q: Why should it have to import 'React'?
 import { useState } from 'react';
 import './index.css';
-import Todo from './components/todo';
-import Form from './components/form';
+import Todo from './components/Todo';
+import Form from './components/Form';
 // import AddBtn from './components/addBtn';
 
 function TodoList(props) {
