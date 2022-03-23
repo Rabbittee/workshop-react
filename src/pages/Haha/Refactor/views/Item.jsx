@@ -3,7 +3,8 @@ import Input from '../components/Input';
 
 function EditToggle({ item, fn }) {
   if (item.edit) {
-    return <Input value={item.value} onChange={fn.edit} />;
+    const handleEvent = (e) => fn.edit(e, item);
+    return <Input value={item.value} onChange={handleEvent} onKeyDown={handleEvent} />;
   }
   return (
     <label>

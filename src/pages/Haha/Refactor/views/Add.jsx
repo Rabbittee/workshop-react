@@ -3,10 +3,10 @@ import Button from '../components/Button';
 import Input from '../components/Input';
 
 export function Add() {
-  const { add, edit, input } = useTodoList();
+  const { add, input } = useTodoList();
   return (
     <>
-      <Input onChange={edit} onKeyDown={add} placeholder="add new item" value={input.value} />
+      <Input onChange={add} onKeyDown={add} placeholder="add new item" value={input.value} />
       <Button />
     </>
   );
