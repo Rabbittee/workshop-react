@@ -1,10 +1,17 @@
 import { useTodoList } from '../store/TodoListContext';
 import Input from '../components/Input';
+import Button from '../components/Button';
 
 function EditToggle({ item, fn }) {
   if (item.edit) {
     const handleEvent = (e) => fn.edit(e, item);
-    return <Input value={item.value} onChange={handleEvent} onKeyDown={handleEvent} />;
+
+    return (
+      <>
+        <Input value={item.value} fn={handleEvent} />
+        <Button text="check" item={item} />
+      </>
+    );
   }
   return (
     <label>

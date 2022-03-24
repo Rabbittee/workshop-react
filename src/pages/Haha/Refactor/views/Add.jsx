@@ -6,8 +6,8 @@ export function Add() {
   const { add, input } = useTodoList();
   return (
     <>
-      <Input onChange={add} onKeyDown={add} placeholder="add new item" value={input.value} />
       <Button />
     </>
+      <Input fn={add} placeholder="add new item" value={input.value} />
   );
 }
