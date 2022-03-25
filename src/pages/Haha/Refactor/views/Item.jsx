@@ -9,7 +9,7 @@ function EditToggle({ item, fn }) {
     return (
       <>
         <Input value={item.value} fn={handleEvent} />
-        <Button text="check" item={item} />
+        <Button text="check" onClick={() => fn.editBtn(item)} />
       </>
     );
   }
@@ -22,11 +22,12 @@ function EditToggle({ item, fn }) {
 }
 
 export default function Item({ item }) {
-  const { toggle, edit, setInput, input } = useTodoList();
-  const methods = { toggle, edit, setInput, input };
+  const { input, toggle, edit, del, editBtn } = useTodoList();
+  const methods = { input, toggle, edit, editBtn };
   return (
-    <div>
+    <div className="relative">
       <EditToggle item={item} fn={methods} />
+      <Button text="delete" onClick={() => del(item)} />
     </div>
   );
 }

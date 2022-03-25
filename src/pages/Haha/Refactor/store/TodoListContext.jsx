@@ -41,6 +41,20 @@ export function TodoListProvider({ children }) {
     key === 'Enter' && toggle(item, 'edit');
   };
 
+  const editBtn = (item) => {
+    const newList = list.map((task) => {
+      task.id === item.id && (task.value = item.value);
+      return task;
+    });
+    setList(newList);
+    toggle(item, 'edit');
+  };
+
+  const del = ({ id }) => {
+    const newList = list.filter((el) => el.id !== id);
+    setList(newList);
+  };
+
   const toggle = (item, parm) => {
     const newItem = list.map((el) => {
       el.id === item.id && (el[parm] = !el[parm]);
@@ -49,7 +63,7 @@ export function TodoListProvider({ children }) {
     setList(newItem);
   };
 
-  const value = { list, setList, input, setInput, add, edit, toggle };
+  const value = { list, input, add, edit, del, toggle, addBtn, editBtn };
 
   return <TodoListContext.Provider value={value}>{children}</TodoListContext.Provider>;
 }
