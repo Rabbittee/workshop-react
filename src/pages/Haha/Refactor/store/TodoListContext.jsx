@@ -4,17 +4,30 @@ export const TodoListContext = createContext();
 
 export function TodoListProvider({ children }) {
   const [list, setList] = useState([]);
-  const [input, setInput] = useState({ text: 'add new item', value: '' });
+  const [input, setInput] = useState('');
+  const init = {
+    done: false,
+    edit: false,
+  };
 
-  const add = ({ key, target }, done = false, id = Date.now(), edit = false) => {
+  const add = ({ key, target }, id = Date.now()) => {
     // 新增子項目
     if (key === 'Enter' && !!target.value) {
       const data = target.value.trim();
-      setList([...list, { value: data, done, id, edit }]);
-      setInput({ ...input, value: '' }); // clear
+      setList([...list, { value: data, ...init, id }]);
+      setInput(''); // clear
       return;
     }
-    return setInput({ ...input, value: target.value });
+    return setInput(target.value);
+  };
+
+  const addBtn = (val, id = Date.now()) => {
+    // 新增子項目的按鈕
+    const data = val.trim();
+    if (!!value) {
+      setList([...list, { value: data, ...init, id }]);
+      setInput('');
+    }
   };
 
   const edit = ({ target, key }, item) => {
