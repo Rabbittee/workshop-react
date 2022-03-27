@@ -1,8 +1,10 @@
 import { createContext, useContext, useState } from 'react';
+import { useDialog } from './DialogContext';
 
 export const TodoListContext = createContext();
 
 export function TodoListProvider({ children }) {
+  const { dialog, setDialog } = useDialog();
   const [list, setList] = useState([]);
   const [input, setInput] = useState('');
   const init = {
@@ -50,9 +52,14 @@ export function TodoListProvider({ children }) {
     toggle(item, 'edit');
   };
 
-  const del = ({ id }) => {
-    const newList = list.filter((el) => el.id !== id);
+  const del = () => {
+    const newList = list.filter((el) => el.id !== dialog.deleteItem.id);
     setList(newList);
+    setDialog({ ...dialog, alert: false, confirm: false, deleteItem: {} });
+  };
+
+  const delBtn = (item) => {
+    setDialog({ text: 'Do you sure delete?', alert: true, confirm: true, deleteItem: item });
   };
 
   const toggle = (item, parm) => {
@@ -63,7 +70,7 @@ export function TodoListProvider({ children }) {
     setList(newItem);
   };
 
-  const value = { list, input, add, edit, del, toggle, addBtn, editBtn };
+  const value = { list, input, add, edit, del, toggle, addBtn, editBtn, delBtn };
 
   return <TodoListContext.Provider value={value}>{children}</TodoListContext.Provider>;
 }
