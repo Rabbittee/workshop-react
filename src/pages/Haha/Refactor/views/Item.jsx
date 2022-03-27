@@ -15,8 +15,8 @@ function EditToggle({ item, fn }) {
   }
   return (
     <label>
-      <span onClick={() => fn.toggle(item, 'edit')}>{item.value}</span>
-      <input onChange={() => fn.toggle(item, 'done')} type="checkbox" checked={item.done} />
+      <span onClick={() => fn.toggle(item.id, 'edit')}>{item.value}</span>
+      <input onChange={() => fn.toggle(item.id, 'done')} type="checkbox" checked={item.done} />
     </label>
   );
 }
