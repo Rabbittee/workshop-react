@@ -55,11 +55,11 @@ export function TodoListProvider({ children }) {
   const del = () => {
     const newList = list.filter((el) => el.id !== dialog.deleteItem.id);
     setList(newList);
-    setDialog({ ...dialog, alert: false, confirm: false, deleteItem: {} });
+    setDialog({ show: false, deleteItem: {} });
   };
 
   const delBtn = (item) => {
-    setDialog({ text: 'Do you sure delete?', alert: true, confirm: true, deleteItem: item });
+    setDialog({ show: true, deleteItem: item });
   };
 
   const toggle = (item, parm) => {
