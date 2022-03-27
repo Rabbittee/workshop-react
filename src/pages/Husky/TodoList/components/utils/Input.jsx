@@ -1,4 +1,11 @@
-export function Input({ value, placeholder, onInput, inputRef, icon = false }) {
+import { useEffect, useRef } from 'react';
+
+export function Input({ value, placeholder, onInput, focusEffect, icon = false }) {
+  const inputRef = useRef(null);
+  useEffect(() => {
+    inputRef.current !== null && inputRef.current.focus();
+  }, [focusEffect]);
+
   return (
     <input
       type="text"

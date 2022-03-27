@@ -59,11 +59,17 @@ function useTodoList() {
     setTodoList(newTodoList);
   }
 
-  function toggleEditTask(id) {
+  function toggleEditTask(id, cancel = false) {
     const newTodoList = todoList.map((task) => {
       if (task.id !== id) return task;
 
-      task.edit && task.editTitle !== '' && (task.title = task.editTitle);
+      if (task.edit) {
+        if (cancel) {
+          task.editTitle = task.title;
+        } else {
+          task.editTitle !== '' && (task.title = task.editTitle);
+        }
+      }
       task.edit = !task.edit;
       return { ...task };
     });
@@ -81,7 +87,7 @@ function useTodoList() {
         clickDelete: () => deleteTask(task.id),
         editTask: (newTitle) => editTask(task.id, newTitle),
         onClick: () => toggleTask(task.id),
-        clickEdit: () => toggleEditTask(task.id),
+        clickEdit: (cancel) => toggleEditTask(task.id, cancel),
       };
     },
     todoList,

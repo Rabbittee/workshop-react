@@ -1,28 +1,22 @@
-import { useEffect, useRef } from 'react';
+import clsx from 'clsx';
 
 import { Icon } from './components/icon';
 import { Input } from './components/utils';
 import { ItemContext, useItemContext } from './todoContext';
-
-const useAutoFocusInput = (task) => {
-  const inputRef = useRef(null);
-  useEffect(() => {
-    inputRef.current !== null && inputRef.current.focus();
-  }, [task]);
-
-  return inputRef;
-};
 
 function EditToggle() {
   const {
     task,
     methods: { onClick, editTask },
   } = useItemContext();
-  const inputRef = useAutoFocusInput(task);
 
   if (task.edit) {
     return (
-      <Input value={task.editTitle} onInput={(e) => editTask(e.target.value)} inputRef={inputRef} />
+      <Input
+        value={task.editTitle}
+        onInput={(e) => editTask(e.target.value)}
+        focusEffect={task.edit}
+      />
     );
   }
   return (
@@ -32,7 +26,7 @@ function EditToggle() {
         className="bg-check h-6 w-6 rounded-md border border-gray-300 bg-white checked:border-transparent focus:outline-none"
         onChange={onClick}
       />
-      <span className={'font-normal text-gray-700' + (task.status && ' line-through')}>
+      <span className={clsx('font-normal text-gray-700', task.status && 'line-through')}>
         {task.title}
       </span>
     </label>
@@ -47,8 +41,12 @@ function Buttons() {
 
   return (
     <button className="flex w-12 justify-end gap-2 text-right">
-      {!task.status && <Icon.Edit className="h-5 w-5 text-gray-400" onClick={clickEdit} />}
-      <Icon.Delete className="h-5 w-5 text-gray-400" onClick={clickDelete} />
+      {!task.status && <Icon.Edit className="h-5 w-5 text-gray-400" onClick={() => clickEdit()} />}
+      {task.edit ? (
+        <Icon.Cancel className="h-5 w-5 text-gray-400" onClick={() => clickEdit(true)} />
+      ) : (
+        <Icon.Delete className="h-5 w-5 text-gray-400" onClick={clickDelete} />
+      )}
     </button>
   );
 }
