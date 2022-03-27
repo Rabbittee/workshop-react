@@ -73,7 +73,14 @@ export function TodoListProvider({ children }) {
     setList(newItem);
   };
 
-  const value = { list, input, submit, edit, del, toggle, submitBtn, editBtn, delBtn };
+  // const value = { list, input, submit, edit, del, toggle, submitBtn, editBtn, delBtn };
+
+  const value = {
+    list,
+    input,
+    Methods: { add: submit, edit, del, toggle },
+    Buttons: { add: submitBtn, edit: editBtn, delete: delBtn },
+  };
 
   return <TodoListContext.Provider value={value}>{children}</TodoListContext.Provider>;
 }

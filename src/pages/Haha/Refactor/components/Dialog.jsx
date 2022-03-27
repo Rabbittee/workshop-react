@@ -4,7 +4,8 @@ import Button from '../components/Button';
 
 export default function Dialog() {
   const { dialog, cancel } = useDialog();
-  const { del } = useTodoList();
+  const { Methods } = useTodoList();
+
   return (
     <>
       {dialog.show && (
@@ -19,7 +20,7 @@ export default function Dialog() {
             </div>
             <div className="space-x-4 text-center md:block">
               <Button onClick={cancel} text="cancel" />
-              <Button onClick={del} text="delete" />
+              <Button onClick={Methods.del} text="delete" />
             </div>
           </div>
         </div>

@@ -2,32 +2,32 @@ import { useTodoList } from '../store/TodoListContext';
 import Input from '../components/Input';
 import Button from '../components/Button';
 
-function EditToggle({ item, fn }) {
-  if (item.edit) {
-    const handleEvent = (e) => fn.edit(e, item);
+function EditToggle({ item }) {
+  const { Methods, Buttons } = useTodoList();
 
+  if (item.edit) {
     return (
       <>
-        <Input value={item.value} fn={handleEvent} />
-        <Button text="check" onClick={() => fn.editBtn(item)} />
+        <Input value={item.value} fn={(e) => Methods.edit(e, item)} />
+        <Button text="check" onClick={() => Buttons.edit(item)} />
       </>
     );
   }
   return (
     <label>
-      <span onClick={() => fn.toggle(item.id, 'edit')}>{item.value}</span>
-      <input onChange={() => fn.toggle(item.id, 'done')} type="checkbox" checked={item.done} />
+      <span onClick={() => Methods.toggle(item.id, 'edit')}>{item.value}</span>
+      <input onChange={() => Methods.toggle(item.id, 'done')} type="checkbox" checked={item.done} />
     </label>
   );
 }
 
 export default function Item({ item }) {
-  const { input, toggle, edit, delBtn, editBtn } = useTodoList();
-  const methods = { input, toggle, edit, editBtn };
+  const { Buttons } = useTodoList();
+
   return (
     <div className="relative">
-      <EditToggle item={item} fn={methods} />
-      <Button text="delete" onClick={() => delBtn(item.id)} />
+      <EditToggle item={item} />
+      <Button text="delete" onClick={() => Buttons.delete(item.id)} />
     </div>
   );
 }
