@@ -18,6 +18,7 @@ function TodoList() {
     setDataList([newItem, ...dataList]);
     setInputValue('');
   }
+  
   function updateTodo(text, id) {
     setDataList(
       dataList.map((item) => {
@@ -26,6 +27,7 @@ function TodoList() {
       })
     );
   }
+  
   function toggleDataState(id, toggleState) {
     setDataList(
       dataList.map((item) => {
