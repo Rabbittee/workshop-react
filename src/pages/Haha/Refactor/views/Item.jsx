@@ -27,7 +27,7 @@ export default function Item({ item }) {
   return (
     <div className="relative">
       <EditToggle item={item} fn={methods} />
-      <Button text="delete" onClick={() => delBtn(item)} />
+      <Button text="delete" onClick={() => delBtn(item.id)} />
     </div>
   );
 }

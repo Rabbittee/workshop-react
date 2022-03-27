@@ -3,9 +3,9 @@ import { createContext, useContext, useState } from 'react';
 export const DialogContext = createContext();
 
 export function DialogProvider({ children }) {
-  const [dialog, setDialog] = useState({ show: false, deleteItem: {} });
+  const [dialog, setDialog] = useState({ show: false });
 
-  const cancel = () => setDialog({ ...dialog, show: !dialog.show });
+  const cancel = () => setDialog({ show: !dialog.show });
 
   const value = { dialog, setDialog, cancel };
 

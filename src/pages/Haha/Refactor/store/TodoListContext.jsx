@@ -32,39 +32,43 @@ export function TodoListProvider({ children }) {
     }
   };
 
-  const edit = ({ target, key }, item) => {
+  const edit = ({ target, key }, { id }) => {
     // 編輯子項目
     const newList = list.map((task) => {
-      task.id === item.id && (task.value = target.value);
+      task.id === id && (task.value = target.value);
       return task;
     });
     setList(newList);
     // 按下 enter 時，切換回去顯示狀態
-    key === 'Enter' && toggle(item, 'edit');
+    key === 'Enter' && toggle(id, 'edit');
   };
 
   const editBtn = (item) => {
+    // 編輯子項目的按鈕
     const newList = list.map((task) => {
       task.id === item.id && (task.value = item.value);
       return task;
     });
     setList(newList);
-    toggle(item, 'edit');
+    toggle(item.id, 'edit');
   };
 
   const del = () => {
-    const newList = list.filter((el) => el.id !== dialog.deleteItem.id);
+    // 刪除子項目
+    const newList = list.filter((el) => el.id !== dialog.deleteID);
     setList(newList);
-    setDialog({ show: false, deleteItem: {} });
+    setDialog({ show: false, deleteID: {} });
   };
 
-  const delBtn = (item) => {
-    setDialog({ show: true, deleteItem: item });
+  const delBtn = (id) => {
+    // 刪除子項目的按鈕
+    setDialog({ show: true, deleteID: id });
   };
 
-  const toggle = (item, parm) => {
+  const toggle = (id, parm) => {
+    // 切換不同狀態
     const newItem = list.map((el) => {
-      el.id === item.id && (el[parm] = !el[parm]);
+      el.id === id && (el[parm] = !el[parm]);
       return el;
     });
     setList(newItem);
