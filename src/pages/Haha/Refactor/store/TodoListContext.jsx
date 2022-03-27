@@ -12,24 +12,24 @@ export function TodoListProvider({ children }) {
     edit: false,
   };
 
-  const add = ({ key, target }, id = Date.now()) => {
+  const submit = ({ key, target }) => {
     // 新增子項目
-    if (key === 'Enter' && !!target.value) {
+    if (key === 'Enter' && target.value) {
       const data = target.value.trim();
-      setList([...list, { value: data, ...init, id }]);
-      setInput(''); // clear
-      return;
+      return add(data);
     }
     return setInput(target.value);
   };
 
-  const addBtn = (id = Date.now()) => {
+  const submitBtn = () => {
     // 新增子項目的按鈕
     const data = input.trim();
-    if (!!data) {
-      setList([...list, { value: data, ...init, id }]);
-      setInput('');
-    }
+    if (!!data) return add(data);
+  };
+
+  const add = (data, id = Date.now()) => {
+    setList([...list, { value: data, ...init, id }]);
+    setInput('');
   };
 
   const edit = ({ target, key }, { id }) => {
@@ -74,7 +74,7 @@ export function TodoListProvider({ children }) {
     setList(newItem);
   };
 
-  const value = { list, input, add, edit, del, toggle, addBtn, editBtn, delBtn };
+  const value = { list, input, submit, edit, del, toggle, submitBtn, editBtn, delBtn };
 
   return <TodoListContext.Provider value={value}>{children}</TodoListContext.Provider>;
 }
