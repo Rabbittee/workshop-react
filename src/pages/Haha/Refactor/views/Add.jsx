@@ -7,7 +7,7 @@ export function Add() {
   return (
     <div className="relative mb-5">
       <Input fn={add} placeholder="add new item" value={input} />
-      <Button onClick={() => addBtn(input)} />
+      <Button onClick={addBtn} />
     </div>
   );
 }

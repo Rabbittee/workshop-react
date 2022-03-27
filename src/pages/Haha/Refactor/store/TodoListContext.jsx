@@ -23,10 +23,10 @@ export function TodoListProvider({ children }) {
     return setInput(target.value);
   };
 
-  const addBtn = (val, id = Date.now()) => {
+  const addBtn = (id = Date.now()) => {
     // 新增子項目的按鈕
-    const data = val.trim();
-    if (!!value) {
+    const data = input.trim();
+    if (!!data) {
       setList([...list, { value: data, ...init, id }]);
       setInput('');
     }
