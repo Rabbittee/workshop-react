@@ -32,24 +32,24 @@ export function TodoListProvider({ children }) {
   };
 
   const edit = ({ target, key }, { id }) => {
-    // 編輯項目
-    const newList = list.map((task) => {
-      task.id === id && (task.value = target.value);
-      return task;
-    });
-    setList(newList);
-    // 按下 enter 時，切換回去顯示狀態
+    // // 送出編輯
+    update(target.value, id);
     key === 'Enter' && toggle(id, 'edit');
   };
 
-  const editBtn = (item) => {
-    // 編輯項目的按鈕
+  const editBtn = ({ value, id }) => {
+    // 送出編輯的按鈕
+    update(value, id);
+    toggle(id, 'edit');
+  };
+
+  const update = (data, id) => {
+    // 確認編輯結果
     const newList = list.map((task) => {
-      task.id === item.id && (task.value = item.value);
+      task.id === id && (task.value = data);
       return task;
     });
     setList(newList);
-    toggle(item.id, 'edit');
   };
 
   const del = () => {
