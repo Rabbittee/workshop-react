@@ -8,7 +8,7 @@ function EditToggle({ item }) {
   if (item.edit) {
     return (
       <>
-        <Input value={item.value} fn={(e) => Methods.edit(e, item)} />
+        <Input value={item.value} handleEvent={(e) => Methods.edit(e, item)} />
         <Button text="check" onClick={() => Buttons.edit(item)} />
       </>
     );
