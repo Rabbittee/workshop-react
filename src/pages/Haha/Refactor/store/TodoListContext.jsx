@@ -1,6 +1,7 @@
 import { createContext, useContext, useState } from 'react';
 import { useDialog } from './DialogContext';
 import { Init } from '../utils/Init';
+
 export const TodoListContext = createContext();
 
 export function TodoListProvider({ children }) {
@@ -8,20 +9,20 @@ export function TodoListProvider({ children }) {
   const [list, setList] = useState([]);
   const [input, setInput] = useState('');
 
-  const submit = ({ key, target }) => {
+  const add = ({ key, target }) => {
     // 送出新增
     if (key === 'Enter' && target.value) {
-      return add(target.value);
+      return setAdd(target.value);
     }
     return setInput(target.value);
   };
 
-  const submitBtn = () => {
+  const addBtn = () => {
     // 送出新增的按鈕
-    if (!!input) return add(input);
+    if (!!input) return setAdd(input);
   };
 
-  const add = (data) => {
+  const setAdd = (data) => {
     // 新增項目
     setList([...list, { value: data.trim(), ...Init.item() }]);
     setInput('');
@@ -29,17 +30,17 @@ export function TodoListProvider({ children }) {
 
   const edit = ({ target, key }, { id }) => {
     // // 送出編輯
-    update(target.value, id);
+    setEdit(target.value, id);
     key === 'Enter' && toggle(id, 'edit');
   };
 
   const editBtn = ({ value, id }) => {
     // 送出編輯的按鈕
-    update(value, id);
+    setEdit(value, id);
     toggle(id, 'edit');
   };
 
-  const update = (data, id) => {
+  const setEdit = (data, id) => {
     // 確認編輯結果
     const newList = list.map((task) => {
       task.id === id && (task.value = data);
@@ -72,8 +73,8 @@ export function TodoListProvider({ children }) {
   const value = {
     list,
     input,
-    Methods: { add: submit, edit, del, toggle },
-    Buttons: { add: submitBtn, edit: editBtn, delete: delBtn },
+    Methods: { add, edit, delete: del, toggle },
+    Buttons: { add: addBtn, edit: editBtn, delete: delBtn },
   };
 
   return <TodoListContext.Provider value={value}>{children}</TodoListContext.Provider>;

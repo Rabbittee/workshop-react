@@ -1,10 +1,8 @@
-import { Add } from './views/Add';
-import { List } from './views/List';
-import Dialog from './components/Dialog';
 import { TodoListProvider } from './store/TodoListContext';
 import { DialogProvider } from './store/DialogContext';
-
-// TODO Dialog 的溝通邏輯 custom hook
+import Add from './views/Add';
+import List from './views/List';
+import Dialog from './components/Dialog';
 
 function TodoList() {
   return (
