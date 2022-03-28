@@ -9,6 +9,12 @@ export function TodoListProvider({ children }) {
   const [list, setList] = useState([]);
   const [input, setInput] = useState('');
 
+  const setAdd = (data) => {
+    // 新增項目
+    setList([...list, { value: data.trim(), ...Init.item() }]);
+    setInput('');
+  };
+
   const add = ({ key, target }) => {
     // 送出新增
     if (key === 'Enter' && target.value) {
@@ -22,10 +28,13 @@ export function TodoListProvider({ children }) {
     if (!!input) return setAdd(input);
   };
 
-  const setAdd = (data) => {
-    // 新增項目
-    setList([...list, { value: data.trim(), ...Init.item() }]);
-    setInput('');
+  const setEdit = (data, id) => {
+    // 確認編輯結果
+    const newList = list.map((task) => {
+      task.id === id && (task.value = data);
+      return task;
+    });
+    setList(newList);
   };
 
   const edit = ({ target, key }, { id }) => {
@@ -38,15 +47,6 @@ export function TodoListProvider({ children }) {
     // 送出編輯的按鈕
     setEdit(value, id);
     toggle(id, 'edit');
-  };
-
-  const setEdit = (data, id) => {
-    // 確認編輯結果
-    const newList = list.map((task) => {
-      task.id === id && (task.value = data);
-      return task;
-    });
-    setList(newList);
   };
 
   const del = () => {
