@@ -8,7 +8,7 @@ export default function Add() {
   return (
     <div className="relative mb-5">
       <Input handleEvent={Methods.add} placeholder="add new item" value={input} />
-      <Button onClick={Buttons.add} text="add" />
+      <Button text="add" icon="Add" onClick={Buttons.add} />
     </div>
   );
 }
