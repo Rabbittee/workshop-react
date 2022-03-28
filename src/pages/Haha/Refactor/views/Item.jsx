@@ -8,8 +8,12 @@ function EditToggle({ item }) {
   if (item.edit) {
     return (
       <>
-        <Input value={item.value} handleEvent={(e) => Methods.edit(e, item)} />
-        <Button text="check" onClick={() => Buttons.edit(item)} />
+        <Input
+          value={item.value}
+          handleEvent={(e) => Methods.edit(e, item)}
+          className="col-span-3"
+        />
+        <Button text="check" icon="Edit" onClick={() => Buttons.edit(item)} />
       </>
     );
   }
@@ -25,9 +29,9 @@ export default function Item({ item }) {
   const { Buttons } = useTodoList();
 
   return (
-    <div className="relative">
+    <li className="my-3 grid grid-cols-8 gap-4">
       <EditToggle item={item} />
-      <Button text="delete" onClick={() => Buttons.delete(item.id)} />
-    </div>
+      <Button text="delete" icon="Trash" onClick={() => Buttons.delete(item.id)} />
+    </li>
   );
 }

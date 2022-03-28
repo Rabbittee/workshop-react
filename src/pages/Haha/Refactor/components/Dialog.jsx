@@ -20,8 +20,8 @@ export default function Dialog() {
               <h2 className="py-4 text-xl font-bold ">{Title}</h2>
             </div>
             <div className="space-x-4 text-center md:block">
-              <Button onClick={cancel} text="cancel" />
-              <Button onClick={Methods.delete} text="delete" />
+              <Button text="cancel" onClick={cancel} />
+              <Button text="delete" onClick={Methods.delete} />
             </div>
           </div>
         </div>
