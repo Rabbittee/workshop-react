@@ -1,16 +1,12 @@
 import { createContext, useContext, useState } from 'react';
 import { useDialog } from './DialogContext';
-
+import { Init } from '../utils/Init';
 export const TodoListContext = createContext();
 
 export function TodoListProvider({ children }) {
   const { dialog, setDialog } = useDialog();
   const [list, setList] = useState([]);
   const [input, setInput] = useState('');
-  const init = {
-    done: false,
-    edit: false,
-  };
 
   const submit = ({ key, target }) => {
     // 送出新增
@@ -25,9 +21,9 @@ export function TodoListProvider({ children }) {
     if (!!input) return add(input);
   };
 
-  const add = (data, id = Date.now()) => {
+  const add = (data) => {
     // 新增項目
-    setList([...list, { value: data.trim(), ...init, id }]);
+    setList([...list, { value: data.trim(), ...Init.item() }]);
     setInput('');
   };
 
@@ -56,12 +52,12 @@ export function TodoListProvider({ children }) {
     // 刪除項目
     const newList = list.filter((el) => el.id !== dialog.deleteID);
     setList(newList);
-    setDialog({ show: false, deleteID: {} });
+    setDialog(Init.dialog());
   };
 
   const delBtn = (id) => {
     // 刪除項目的按鈕
-    setDialog({ show: true, deleteID: id });
+    setDialog(Init.dialog(true, id));
   };
 
   const toggle = (id, parm) => {
@@ -72,8 +68,6 @@ export function TodoListProvider({ children }) {
     });
     setList(newItem);
   };
-
-  // const value = { list, input, submit, edit, del, toggle, submitBtn, editBtn, delBtn };
 
   const value = {
     list,
