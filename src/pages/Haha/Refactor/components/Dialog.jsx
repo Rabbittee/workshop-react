@@ -1,5 +1,6 @@
 import { useDialog } from '../store/DialogContext';
 import { useTodoList } from '../store/TodoListContext';
+import { Title } from '../utils/Constant';
 import Button from '../components/Button';
 
 export default function Dialog() {
@@ -16,11 +17,11 @@ export default function Dialog() {
           <div className="absolute inset-0 z-0 bg-black opacity-80"></div>
           <div className="relative  mx-auto my-auto w-full max-w-lg rounded-xl bg-white p-5  shadow-lg ">
             <div className="flex-auto justify-center p-5 text-center">
-              <h2 className="py-4 text-xl font-bold ">Do you sure delete?</h2>
+              <h2 className="py-4 text-xl font-bold ">{Title}</h2>
             </div>
             <div className="space-x-4 text-center md:block">
               <Button onClick={cancel} text="cancel" />
-              <Button onClick={Methods.del} text="delete" />
+              <Button onClick={Methods.delete} text="delete" />
             </div>
           </div>
         </div>
