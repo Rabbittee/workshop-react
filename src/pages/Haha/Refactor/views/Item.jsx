@@ -11,16 +11,21 @@ function EditToggle({ item }) {
         <Input
           value={item.value}
           handleEvent={(e) => Methods.edit(e, item)}
-          className="col-span-3"
+          className="col-span-3 col-start-2"
         />
-        <Button text="check" icon="Edit" onClick={() => Buttons.edit(item)} />
+        <Button
+          className="col-start-6"
+          text="check"
+          icon="Edit"
+          onClick={() => Buttons.edit(item)}
+        />
       </>
     );
   }
   return (
-    <label className="col-span-5 space-x-10">
+    <label className="col-span-5 col-start-2 space-x-10">
       <input onChange={() => Methods.toggle(item.id, 'done')} type="checkbox" checked={item.done} />
-      <span className="text-lg " onClick={() => Methods.toggle(item.id, 'edit')}>
+      <span className="cursor-pointer text-lg" onClick={() => Methods.toggle(item.id, 'edit')}>
         {item.value}
       </span>
     </label>
