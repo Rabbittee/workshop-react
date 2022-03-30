@@ -1,12 +1,16 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext, createContext } from 'react';
 import storage from './components/storage.js';
 import AddTodo from './AddTodo.jsx';
 import TodoWrapper from './TodoWrapper.jsx';
 
-function TodoList() {
+const MethodContext = createContext();
+
+export default function TodoList() {
   const [inputValue, setInputValue] = useState('');
   const [dataList, setDataList] = useState(() => storage().get() || []);
 
+  const methods = { addTodo, updateTodo, toggleDataState, deleteItem };
+  
   function addTodo(text) {
     if (!text.trim()) return;
     const newItem = {
@@ -59,15 +63,12 @@ function TodoList() {
         addTodo={() => addTodo(inputValue)}
       />
 
-      <TodoWrapper
-        dataList={dataList}
-        updateTodo={updateTodo}
-        toggleDataState={toggleDataState}
-        deleteItem={deleteItem}
-      />
+      <MethodContext.Provider value={methods}>
+        <TodoWrapper dataList={dataList} />
+      </MethodContext.Provider>
 
     </div>
   );
 }
 
-export default TodoList;
+export const useMethods = () => useContext(MethodContext);

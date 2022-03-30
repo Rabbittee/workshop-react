@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import TodoForm from './TodoForm';
 
-function TodoWrapper({ dataList, updateTodo, toggleDataState, deleteItem }) {
+function TodoWrapper({ dataList }) {
   return (
     <ul className={clsx('flex flex-col gap-3', 'text-lg text-gray-300')}>
       {dataList.length === 0 ? (
@@ -18,12 +18,7 @@ function TodoWrapper({ dataList, updateTodo, toggleDataState, deleteItem }) {
               'rounded-md first:rounded-t-none'
             )}
           >
-            <TodoForm
-              item={item}
-              updateTodo={updateTodo}
-              toggleDataState={toggleDataState}
-              deleteItem={deleteItem}
-            />
+            <TodoForm item={item} />
           </li>
         ))
       )}
