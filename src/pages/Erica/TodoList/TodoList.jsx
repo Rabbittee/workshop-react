@@ -5,10 +5,10 @@ import { storage } from './utils';
 
 function TodoList() {
   const [value, setValue] = useState('');
-  const [todo, setTodo] = useState(storage().get());
+  const [todo, setTodo] = useState(() => storage().get());
 
   function onInput(e) {
-    setValue(e.target.value.trim());
+    setValue(e.target.value);
   }
 
   function toggleState(id, key) {
@@ -21,10 +21,10 @@ function TodoList() {
   }
 
   function addTodo() {
-    if (!value) return;
+    if (!value.trim()) return;
     const newTodo = {
-      id: todo.length + 1,
-      title: value,
+      id: Date.now(),
+      title: value.trim(),
       isDone: false,
       isEdit: false,
     };

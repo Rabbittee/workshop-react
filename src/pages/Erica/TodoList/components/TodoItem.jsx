@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { Button, Input, Checkbox } from './index';
+import { Button, Input, Checkbox } from './';
 
 export function TodoItem({ todo, toggleState, toggleEdit, updateTodo, deleteTodo }) {
   const { id, title, isDone, isEdit } = todo;
