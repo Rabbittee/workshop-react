@@ -39,8 +39,8 @@ function TodoList() {
 
   const onTodoStatusChange = (e) => {
     e.preventDefault();
-    const formData = new FormData(e.target.form);
-    setTodoFilter(formData.get('todo-status'));
+    const value = e.target.value;
+    setTodoFilter(value);
   };
 
   return (
@@ -50,17 +50,16 @@ function TodoList() {
         {/* search */}
 
         {/* filters (select) - time/status */}
-        <form onChange={onTodoStatusChange}>
-          <select
-            name="todo-status"
-            id="todo-status"
-            className="cursor-pointer bg-slate-600 p-2 text-white"
-          >
-            <option value="all">Show all</option>
-            <option value="completed">Completed</option>
-            <option value="onProcessing">On processing</option>
-          </select>
-        </form>
+        <select
+          name="todo-status"
+          id="todo-status"
+          className="mr-auto cursor-pointer bg-slate-600 p-2 text-white"
+          onChange={onTodoStatusChange}
+        >
+          <option value="all">Show all</option>
+          <option value="completed">Completed</option>
+          <option value="onProcessing">On processing</option>
+        </select>
 
         {/* list */}
         <TodoItems items={filteredTodoItems()} editTodo={editTodo} removeTodo={removeTodo} />
