@@ -45,7 +45,7 @@ function TodoItem({ id, task, isChecked = false, createAt, updateAt, editTodo, r
     toggleCheck();
   };
 
-  const onClickForm = (e) => {
+  const onClickTodoItem = (e) => {
     e.stopPropagation();
     if (isEdit === true) return;
     const isClickInput = !!e.target.closest('input');
@@ -79,70 +79,65 @@ function TodoItem({ id, task, isChecked = false, createAt, updateAt, editTodo, r
   };
 
   return (
-    <form
-      className="cursor-pointer py-4 px-4 hover:bg-teal-50 hover:bg-opacity-10"
-      onClick={onClickForm}
-      onSubmit={onSubmitForm}
-    >
-      <div
-        className={clsx([isEdit ? 'block' : 'hidden', 'flex items-center justify-between gap-4'])}
-      >
-        <div className="flex w-full">
-          <input
-            type="text"
-            id="edit-task"
-            name="edit-task"
-            defaultValue={task}
-            className="w-full rounded bg-slate-500 p-2 text-white"
-            placeholder="Edit your task here..."
-            required
-          />
+    <div className="cursor-pointer py-4 px-4 hover:bg-teal-50 hover:bg-opacity-10">
+      {isEdit ? (
+        <form className="flex items-center justify-between gap-4" onSubmit={onSubmitForm}>
+          <div className="flex w-full">
+            <input
+              type="text"
+              id="edit-task"
+              name="edit-task"
+              defaultValue={task}
+              className="w-full rounded bg-slate-500 p-2 text-white"
+              placeholder="Edit your task here..."
+              required
+            />
+          </div>
+          <div className="flex">
+            <SuccessButton type="submit">
+              <Icon.Check />
+            </SuccessButton>
+          </div>
+        </form>
+      ) : (
+        <div
+          className="flex flex-wrap items-center justify-between gap-4"
+          onClick={onClickTodoItem}
+        >
+          <div className="flex items-center gap-4">
+            <input
+              type="checkbox"
+              onChange={onChange}
+              id={itemId}
+              checked={inputCheck}
+              name={itemId}
+            />
+            <label
+              className={clsx([inputCheck && 'text-slate-400 line-through', 'text-xl text-white'])}
+              htmlFor={itemId}
+            >
+              {task}
+            </label>
+          </div>
+          <div className="flex items-center gap-4">
+            <SuccessButton
+              onClick={onClickEditBtn}
+              type="button"
+              className="bg-teal-600 text-white hover:bg-teal-500"
+            >
+              <Icon.Edit />
+            </SuccessButton>
+            <DangerButton type="button" onClick={onClickDeleteBtn}>
+              <Icon.Trash />
+            </DangerButton>
+          </div>
+          <div className="flex w-full flex-col gap-1 pl-7 text-sm text-slate-400 md:flex-row md:gap-4">
+            <p>Create at: {formatTime(createAt)}</p>
+            <p>Update at: {formatTime(updateAt)}</p>
+          </div>
         </div>
-        <div className="flex">
-          <SuccessButton type="submit">
-            <Icon.Check />
-          </SuccessButton>
-        </div>
-      </div>
-      <div
-        className={clsx([
-          isEdit ? 'hidden' : 'block',
-          'flex flex-wrap items-center justify-between gap-4',
-        ])}
-      >
-        <div className="flex items-center gap-4">
-          <input
-            type="checkbox"
-            onChange={onChange}
-            id={itemId}
-            checked={inputCheck}
-            name={itemId}
-          />
-          <label
-            className={clsx([inputCheck && 'text-slate-400 line-through', 'text-xl text-white'])}
-            htmlFor={itemId}
-          >
-            {task}
-          </label>
-        </div>
-        <div className="flex items-center gap-4">
-          <SuccessButton
-            onClick={onClickEditBtn}
-            type="button"
-            className="bg-teal-600 text-white hover:bg-teal-500"
-          >
-            <Icon.Edit />
-          </SuccessButton>
-          <DangerButton type="button" onClick={onClickDeleteBtn}>
-            <Icon.Trash />
-          </DangerButton>
-        </div>
-        <div className="flex w-full flex-col gap-1 pl-7 text-sm text-slate-400 md:flex-row md:gap-4">
-          <p>Create at: {formatTime(createAt)}</p>
-          <p>Update at: {formatTime(updateAt)}</p>
-        </div>
-      </div>
-    </form>
+      )}
+    </div>
   );
 }
 
