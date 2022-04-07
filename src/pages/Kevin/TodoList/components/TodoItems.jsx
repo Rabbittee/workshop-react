@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import React, { useState } from 'react';
 import Icon from './svg/index.js';
-import { formatTimestamp } from './../js/helpers.js';
+import { formatTimestamp } from '../js/util.js';
 
 export default function TodoList({ items, editTodo, removeTodo }) {
   return (
