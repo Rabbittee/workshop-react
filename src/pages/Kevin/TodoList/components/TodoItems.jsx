@@ -48,9 +48,6 @@ function TodoItem({ id, task, isChecked = false, createAt, updateAt, editTodo, r
   const onClickTodoItem = (e) => {
     e.stopPropagation();
     if (isEdit === true) return;
-    const isClickInput = !!e.target.closest('input');
-    const isClickLabel = !!e.target.closest('label');
-    if (isClickInput || isClickLabel) return;
     toggleCheck();
   };
 
@@ -111,9 +108,13 @@ function TodoItem({ id, task, isChecked = false, createAt, updateAt, editTodo, r
               id={itemId}
               checked={inputCheck}
               name={itemId}
+              className="pointer-events-none"
             />
             <label
-              className={clsx([inputCheck && 'text-slate-400 line-through', 'text-xl text-white'])}
+              className={clsx([
+                inputCheck && 'text-slate-400 line-through',
+                'pointer-events-none text-xl text-white',
+              ])}
               htmlFor={itemId}
             >
               {task}
