@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useTodo } from './TodoContext.jsx';
-import { SuccessBorderButton, DangerBorderButton } from './Button.jsx';
+import { SuccessBorderButton } from './Button.jsx';
 import TodoDeleteModal from './TodoDeleteModal.jsx';
 import Icon from './svg/index.js';
 import { formatTimestamp } from '../js/util.js';
