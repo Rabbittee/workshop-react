@@ -9,7 +9,7 @@ function Haha() {
       <Route path="/" element={<Layout />}>
         <Route index element={<TodoList />} />
         <Route path="todo" element={<TodoList />} />
-        <Route path="refactor" element={<Refactor />} />
+        <Route path="todoV2" element={<Refactor />} />
       </Route>
     </Routes>
   );
