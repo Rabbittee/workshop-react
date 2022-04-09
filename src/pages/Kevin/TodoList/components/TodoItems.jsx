@@ -25,7 +25,7 @@ export default function TodoList({ items, editTodo, removeTodo }) {
 function TodoItem({ id, task, isChecked = false, createAt, updateAt, editTodo, removeTodo }) {
   const itemId = `todo-item-${id}`;
 
-  const [inputCheck, setInputCheck] = useState(false);
+  const [inputCheck, setInputCheck] = useState(isChecked);
   const [isEdit, setIsEdit] = useState(false);
 
   const handleEditTodo = ({ newTask, isCompleted }) => {
