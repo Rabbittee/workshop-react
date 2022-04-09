@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useTodo } from './TodoContext.jsx';
+import { SuccessBorderButton, DangerBorderButton } from './Button.jsx';
 import Icon from './svg/index.js';
 import { formatTimestamp } from '../js/util.js';
 import clsx from 'clsx';
@@ -95,9 +96,9 @@ function TodoItem({ id, task, isChecked = false, createAt, updateAt, editTodo, r
             />
           </div>
           <div className="flex">
-            <SuccessButton type="submit">
+            <SuccessBorderButton type="submit">
               <Icon.Check />
-            </SuccessButton>
+            </SuccessBorderButton>
           </div>
         </form>
       ) : (
@@ -125,16 +126,16 @@ function TodoItem({ id, task, isChecked = false, createAt, updateAt, editTodo, r
             </label>
           </div>
           <div className="flex items-center gap-4">
-            <SuccessButton
+            <SuccessBorderButton
               onClick={onClickEditBtn}
               type="button"
               className="bg-teal-600 text-white hover:bg-teal-500"
             >
               <Icon.Edit />
-            </SuccessButton>
-            <DangerButton type="button" onClick={onClickDeleteBtn}>
+            </SuccessBorderButton>
+            <DangerBorderButton type="button" onClick={onClickDeleteBtn}>
               <Icon.Trash />
-            </DangerButton>
+            </DangerBorderButton>
           </div>
           <div className="flex w-full flex-col gap-1 pl-7 text-sm text-slate-400 md:flex-row md:gap-4">
             <p>Create at: {formatTime(createAt)}</p>
@@ -143,41 +144,5 @@ function TodoItem({ id, task, isChecked = false, createAt, updateAt, editTodo, r
         </div>
       )}
     </div>
-  );
-}
-
-function DangerButton({ children, ...props }) {
-  return (
-    <Button
-      {...props}
-      className={clsx([
-        'border border-red-500 text-red-500 hover:bg-red-500 hover:text-white',
-        props.className,
-      ])}
-    >
-      {children}
-    </Button>
-  );
-}
-
-function SuccessButton({ children, ...props }) {
-  return (
-    <Button
-      {...props}
-      className={clsx([
-        'border border-teal-600 bg-transparent text-teal-600 hover:bg-teal-600 hover:text-white',
-        props.className,
-      ])}
-    >
-      {children}
-    </Button>
-  );
-}
-
-function Button({ children, ...props }) {
-  return (
-    <button {...props} className={clsx(['rounded-full p-1.5 transition-colors', props.className])}>
-      {children}
-    </button>
   );
 }

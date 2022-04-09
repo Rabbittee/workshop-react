@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useTodo } from './TodoContext.jsx';
+import { SuccessButton, CancelButton } from './Button.jsx';
 import Icon from './svg/index.js';
 import clsx from 'clsx';
 
@@ -78,30 +79,15 @@ function Modal({ isShown, setIsShown, addTodo }) {
             />
           </div>
           <div className="flex justify-end gap-4">
-            <Button
-              type="button"
-              onClick={onCancel}
-              className={['bg-slate-100 hover:bg-slate-200']}
-            >
+            <CancelButton type="button" onClick={onCancel} className={['!rounded-md !px-6 !py-2']}>
               CANCEL
-            </Button>
-            <Button type="submit" className={['bg-teal-200 hover:bg-teal-100']}>
+            </CancelButton>
+            <SuccessButton type="submit" className={['!rounded-md !px-6 !py-2']}>
               ADD TASK
-            </Button>
+            </SuccessButton>
           </div>
         </form>
       </div>
     </div>
-  );
-}
-
-function Button({ children, ...prop }) {
-  return (
-    <button
-      {...prop}
-      className={clsx(['rounded-md px-6 py-2 transition-colors', ...prop.className])}
-    >
-      {children}
-    </button>
   );
 }
