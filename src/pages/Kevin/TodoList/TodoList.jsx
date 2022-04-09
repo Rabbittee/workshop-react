@@ -10,16 +10,28 @@ function TodoList() {
   const [todoItems, setTodoItems] = useState(todo.todos);
   const [todoFilter, setTodoFilter] = useState('all');
 
+  const listStatus = {
+    completed: {
+      value: 'completed',
+      method: () => todoItems.filter((item) => item.isCompleted === true),
+    },
+    onProcessing: {
+      value: 'onProcessing',
+      method: () => todoItems.filter((item) => item.isCompleted === false),
+    },
+    all: {
+      value: 'all',
+      method: () => [...todoItems].sort((a, b) => b.isCompleted === true && -1),
+    },
+  };
+
   const filteredTodoItems = () => {
-    switch (todoFilter) {
-      case 'completed':
-        return todoItems.filter((item) => item.isCompleted === true);
-      case 'onProcessing':
-        return todoItems.filter((item) => item.isCompleted === false);
-      case 'all':
-      default:
-        return todoItems.sort((a, b) => b.isCompleted === true && -1);
-    }
+    const filteredMethod = listStatus[todoFilter]?.method;
+
+    if (typeof filteredMethod !== 'function')
+      throw new Error('filteredTodoItems: filteredMethod receive a wrong key.');
+
+    return filteredMethod();
   };
 
   const addTodo = (newItem) => {
@@ -56,9 +68,9 @@ function TodoList() {
           className="mr-auto cursor-pointer bg-slate-600 p-2 text-white"
           onChange={onTodoStatusChange}
         >
-          <option value="all">Show all</option>
-          <option value="completed">Completed</option>
-          <option value="onProcessing">On processing</option>
+          <option value={listStatus.all.value}>Show all</option>
+          <option value={listStatus.completed.value}>Completed</option>
+          <option value={listStatus.onProcessing.value}>On processing</option>
         </select>
 
         {/* list */}
