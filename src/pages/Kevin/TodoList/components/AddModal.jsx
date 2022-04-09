@@ -1,8 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useTodo } from './TodoContext.jsx';
 import Icon from './svg/index.js';
 import clsx from 'clsx';
 
-export default function AddModal({ addTodo }) {
+export default function AddModal() {
+  const { addTodo } = useTodo();
+
   const [isShown, setIsShown] = useState(false);
 
   return (

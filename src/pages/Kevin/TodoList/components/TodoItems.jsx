@@ -1,9 +1,13 @@
-import clsx from 'clsx';
 import React, { useState } from 'react';
+import { useTodo } from './TodoContext.jsx';
 import Icon from './svg/index.js';
 import { formatTimestamp } from '../js/util.js';
+import clsx from 'clsx';
 
-export default function TodoList({ items, editTodo, removeTodo }) {
+export default function TodoList() {
+  const { filteredTodoItems, editTodo, removeTodo } = useTodo();
+  const items = filteredTodoItems() || [];
+
   return (
     <div className="divide-y divide-slate-500">
       {items.map(({ id, task, isCompleted, createAt, updateAt }) => (
