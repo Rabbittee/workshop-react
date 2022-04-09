@@ -35,7 +35,7 @@ export default class Todo {
   }
 
   timestamp() {
-    return new Date().getTime();
+    return new Date().toISOString();
   }
 
   add({ task }) {

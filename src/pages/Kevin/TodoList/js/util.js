@@ -1,9 +1,9 @@
 export const numPadStart = (num, digits) => String(num).padStart(digits, '0');
 
-export const formatTimestamp = (timestamp) => {
-  if (!!timestamp === false) return null;
+export const formatTimestamp = (time) => {
+  if (!!time === false) return null;
 
-  const newDate = new Date(timestamp);
+  const newDate = new Date(time);
 
   const year = newDate.getFullYear();
   const month = numPadStart(newDate.getMonth() + 1, 2);
