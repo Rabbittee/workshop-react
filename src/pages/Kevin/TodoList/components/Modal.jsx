@@ -15,6 +15,11 @@ export function useModal({ initIsShow }) {
 }
 
 export function Modal({ isShow, toggleModal, children }) {
+  const onClickBackdrop = (e) => {
+    e.stopPropagation();
+    toggleModal(false);
+  };
+
   return (
     <div
       className={clsx([
@@ -22,7 +27,7 @@ export function Modal({ isShow, toggleModal, children }) {
         'cursor-auto bg-black bg-opacity-50 transition-all',
         'fixed top-0 left-0 z-30 flex h-screen w-screen items-center justify-center px-4',
       ])}
-      onClick={() => toggleModal(false)}
+      onClick={onClickBackdrop}
     >
       <div
         className="w-full max-w-md rounded-lg bg-white p-12"
