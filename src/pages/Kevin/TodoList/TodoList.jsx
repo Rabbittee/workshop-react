@@ -1,5 +1,5 @@
 import { TodoProvider } from './components/TodoContext.jsx';
-import AddModal from './components/AddModal.jsx';
+import TodoAddModal from './components/TodoAddModal.jsx';
 import TodoItems from './components/TodoItems.jsx';
 import TodoSelect from './components/TodoSelect.jsx';
 
@@ -16,7 +16,7 @@ function TodoList() {
           <TodoItems />
         </div>
 
-        <AddModal />
+        <TodoAddModal />
       </TodoProvider>
     </div>
   );
