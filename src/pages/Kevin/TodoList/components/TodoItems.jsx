@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useTodo } from './TodoContext.jsx';
 import { SuccessBorderButton, DangerBorderButton } from './Button.jsx';
+import TodoDeleteModal from './TodoDeleteModal.jsx';
 import Icon from './svg/index.js';
 import { formatTimestamp } from '../js/util.js';
 import clsx from 'clsx';
@@ -59,11 +60,6 @@ function TodoItem({ id, task, isChecked = false, createAt, updateAt, editTodo, r
   const onClickEditBtn = (e) => {
     e.stopPropagation();
     setIsEdit(true);
-  };
-
-  const onClickDeleteBtn = (e) => {
-    e.stopPropagation();
-    removeTodo(id);
   };
 
   const onSubmitForm = (e) => {
@@ -133,9 +129,7 @@ function TodoItem({ id, task, isChecked = false, createAt, updateAt, editTodo, r
             >
               <Icon.Edit />
             </SuccessBorderButton>
-            <DangerBorderButton type="button" onClick={onClickDeleteBtn}>
-              <Icon.Trash />
-            </DangerBorderButton>
+            <TodoDeleteModal confirmCallback={() => removeTodo(id)} />
           </div>
           <div className="flex w-full flex-col gap-1 pl-7 text-sm text-slate-400 md:flex-row md:gap-4">
             <p>Create at: {formatTime(createAt)}</p>

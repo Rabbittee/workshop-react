@@ -19,7 +19,7 @@ export function Modal({ isShow, toggleModal, children }) {
     <div
       className={clsx([
         isShow ? 'scale-100 opacity-100' : 'scale-0 opacity-0',
-        'bg-black bg-opacity-50 transition-all',
+        'cursor-auto bg-black bg-opacity-50 transition-all',
         'fixed top-0 left-0 z-30 flex h-screen w-screen items-center justify-center px-4',
       ])}
       onClick={() => toggleModal(false)}
