@@ -1,6 +1,5 @@
 import { createContext, useContext, useState } from 'react';
 import { useDialog } from './DialogContext';
-import { Init } from '../utils/Init';
 
 export const TodoListContext = createContext();
 
@@ -8,6 +7,17 @@ export function TodoListProvider({ children }) {
   const { dialog, setDialog } = useDialog();
   const [list, setList] = useState([]);
   const [input, setInput] = useState('');
+
+  const Init = {
+    item: (id = Date.now()) => {
+      // 初始化項目
+      return { done: false, edit: false, id };
+    },
+    dialog: (show = false, deleteID = '') => {
+      // 初始化 dialog
+      return { show, deleteID };
+    },
+  };
 
   const setAdd = (data) => {
     // 新增項目

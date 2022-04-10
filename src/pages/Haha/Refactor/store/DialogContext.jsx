@@ -1,10 +1,9 @@
 import { createContext, useContext, useState } from 'react';
-import { Init } from '../utils/Init';
 
 export const DialogContext = createContext();
 
 export function DialogProvider({ children }) {
-  const [dialog, setDialog] = useState(() => Init.dialog());
+  const [dialog, setDialog] = useState({ show: false, deleteID: '' });
 
   const cancel = () => setDialog({ show: !dialog.show });
 
