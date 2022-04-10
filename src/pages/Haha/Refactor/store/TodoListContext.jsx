@@ -74,8 +74,10 @@ export function TodoListProvider({ children }) {
   const toggle = (id, parm) => {
     // 切換不同狀態
     const newItem = list.map((el) => {
-      el.id === id && (el[parm] = !el[parm]);
-      return el;
+      if (el.id === id) {
+        return { ...el, [parm]: !el[parm] };
+      }
+      return false;
     });
     setList(newItem);
   };
