@@ -8,7 +8,7 @@
   @apply items-center justify-center;
 }
 
-.vertial-center {
+.vertical-center {
   @apply flex items-center;
 }
 

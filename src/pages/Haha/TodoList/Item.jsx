@@ -41,7 +41,7 @@ function Item({ item, edit, handleDialog }) {
           />
         ) : (
           <div
-            className={clsx('vertial-center col-span-4 rounded bg-purple-100 pl-3', {
+            className={clsx('vertical-center col-span-4 rounded bg-purple-100 pl-3', {
               'line-through': item.isDone,
             })}
             onClick={toggleEdit}

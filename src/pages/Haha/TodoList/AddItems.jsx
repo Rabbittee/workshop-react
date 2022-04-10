@@ -33,7 +33,7 @@ function AddItems({ add, handleDialog }) {
         size="30"
         logo="add"
         message="add"
-        className="vertial-center rounded-lg bg-[#78abb19d] p-2 px-5 py-2.5 text-center text-sm text-gray-900 hover:bg-[#F7BE38]/90 "
+        className="vertical-center rounded-lg bg-[#78abb19d] p-2 px-5 py-2.5 text-center text-sm text-gray-900 hover:bg-[#F7BE38]/90 "
       />
     </div>
   );

@@ -6,7 +6,7 @@ import Dialog from './components/Dialog';
 
 function TodoList() {
   return (
-    <div className="vertial-center h-screen flex-col bg-blue-300">
+    <div className="vertical-center h-screen flex-col bg-blue-300">
       <DialogProvider>
         <TodoListProvider>
           <div className="my-10 text-3xl text-yellow-300">Todolist Refactor</div>
