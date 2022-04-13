@@ -52,6 +52,7 @@ export function TodoListProvider({ children }) {
   }, [list]);
 
   const value = { list, setList, onSubmit, toggleStatus, onDelete, onUpdate, toggleEdit, onChange };
+  
   return <TodoListContext.Provider value={value}>{children}</TodoListContext.Provider>;
 }
 

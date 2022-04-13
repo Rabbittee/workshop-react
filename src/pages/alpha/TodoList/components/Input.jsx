@@ -1,14 +1,13 @@
 import clsx from 'clsx';
 
-export function Input({ name, className, value, onChange }) {
+export function Input({ name, className, value }) {
   return (
     <input
       type="text"
       name={name}
       id={name}
-      className={clsx('w-5/6 rounded-md p-2 text-xl', className)}
+      className={clsx('w-5/6 rounded-md p-2 ', className)}
       value={value}
-      onChange={() => onChange}
     />
   );
 }
