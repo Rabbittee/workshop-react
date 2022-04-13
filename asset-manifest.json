@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/workshop-react/static/css/main.4c459bd9.css",
+    "main.css": "/workshop-react/static/css/main.4eb95c64.css",
     "main.js": "/workshop-react/static/js/main.fef7980f.js",
     "static/js/787.e3cfaefd.chunk.js": "/workshop-react/static/js/787.e3cfaefd.chunk.js",
     "static/media/add.svg": "/workshop-react/static/media/add.7ebe9b1d7552f94009a770f2033ba187.svg",
@@ -13,12 +13,12 @@
     "static/media/EditIcon.svg": "/workshop-react/static/media/EditIcon.127ccb37e0dac77d8cce26c8276aa88d.svg",
     "static/media/DeleteIcon.svg": "/workshop-react/static/media/DeleteIcon.9220d78e4d4278357617a7551feca8fc.svg",
     "static/media/AddIcon.svg": "/workshop-react/static/media/AddIcon.c4f72d60faab97c09686363d45b6b485.svg",
-    "main.4c459bd9.css.map": "/workshop-react/static/css/main.4c459bd9.css.map",
+    "main.4eb95c64.css.map": "/workshop-react/static/css/main.4eb95c64.css.map",
     "main.fef7980f.js.map": "/workshop-react/static/js/main.fef7980f.js.map",
     "787.e3cfaefd.chunk.js.map": "/workshop-react/static/js/787.e3cfaefd.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.4c459bd9.css",
+    "static/css/main.4eb95c64.css",
     "static/js/main.fef7980f.js"
   ]
 }
