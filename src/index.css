@@ -21,7 +21,7 @@
 }
 
 .input-style {
-  @apply appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none
+  @apply appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none;
 }
 
 .button-hover {
@@ -29,19 +29,17 @@
 }
 
 .dialog-box {
- @apply fixed  inset-0  left-0 top-0 z-50 flex h-screen items-center justify-center bg-cover bg-center bg-no-repeat outline-none focus:outline-none 
+  @apply fixed  inset-0  left-0 top-0 z-50 flex h-screen items-center justify-center bg-cover bg-center bg-no-repeat outline-none focus:outline-none;
 }
 
 .dialog-title {
-  @apply flex-auto justify-center p-5 text-center
+  @apply flex-auto justify-center p-5 text-center;
 }
 
 .dialog-content {
-  @apply mx-auto my-auto w-full max-w-lg rounded-xl bg-white p-5  shadow-lg
+  @apply mx-auto my-auto w-full max-w-lg rounded-xl bg-white p-5  shadow-lg;
 }
 
 .dialog-button {
-  @apply mb-2 rounded-full border px-5 py-2 text-sm font-medium tracking-wider shadow-sm hover:shadow-lg md:mb-0
+  @apply mb-2 rounded-full border px-5 py-2 text-sm font-medium tracking-wider shadow-sm hover:shadow-lg md:mb-0;
 }
-
-

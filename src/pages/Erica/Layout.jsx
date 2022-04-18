@@ -2,8 +2,8 @@ import { Outlet } from 'react-router-dom';
 
 function Layout() {
   return (
-    <div className="py-10 min-h-screen">
-      <div className="max-w-xl mx-auto">
+    <div className="min-h-screen py-10">
+      <div className="mx-auto max-w-xl">
         <Outlet />
       </div>
     </div>

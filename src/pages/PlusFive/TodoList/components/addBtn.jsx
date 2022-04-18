@@ -7,7 +7,7 @@
  */
 function AddBtn() {
   return (
-    <button className="w-14 rounded p-1 text-sm font-style hover:text-sky-700" type="submit">
+    <button className="font-style w-14 rounded p-1 text-sm hover:text-sky-700" type="submit">
       add
     </button>
   );

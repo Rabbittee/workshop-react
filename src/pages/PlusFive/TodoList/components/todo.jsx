@@ -8,7 +8,7 @@
 function Todo({ name, completed, id, toggleTaskCompleted, deleteTask }) {
   return (
     <li>
-      <div className="flex justify-between m-3 space-x-5 border-b">
+      <div className="m-3 flex justify-between space-x-5 border-b">
         <div className="space-x-2">
           <input
             id={id}
@@ -22,7 +22,7 @@ function Todo({ name, completed, id, toggleTaskCompleted, deleteTask }) {
           </label>
         </div>
         <button
-          className="w-14 p-1 font-style text-sm hover:text-rose-600"
+          className="font-style w-14 p-1 text-sm hover:text-rose-600"
           onClick={() => deleteTask(id)}
         >
           delete
