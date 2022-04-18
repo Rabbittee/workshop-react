@@ -1,12 +1,16 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext, createContext } from 'react';
 import storage from './components/storage.js';
 import AddTodo from './AddTodo.jsx';
 import TodoWrapper from './TodoWrapper.jsx';
 
-function TodoList() {
+const MethodContext = createContext();
+
+export default function TodoList() {
   const [inputValue, setInputValue] = useState('');
   const [dataList, setDataList] = useState(() => storage().get() || []);
 
+  const methods = { addTodo, updateTodo, toggleDataState, deleteItem };
+  
   function addTodo(text) {
     if (!text.trim()) return;
     const newItem = {
@@ -18,7 +22,7 @@ function TodoList() {
     setDataList([newItem, ...dataList]);
     setInputValue('');
   }
-  
+
   function updateTodo(text, id) {
     setDataList(
       dataList.map((item) => {
@@ -27,7 +31,7 @@ function TodoList() {
       })
     );
   }
-  
+
   function toggleDataState(id, toggleState) {
     setDataList(
       dataList.map((item) => {
@@ -50,7 +54,8 @@ function TodoList() {
 
   return (
     <div className="mx-auto w-full max-w-lg">
-      <h1 className="h-full py-5 text-center text-3xl text-gray-300">here is pencil's todo list</h1>
+
+      <h1 className="h-full py-5 text-center text-3xl text-gray-300">here is pencil's todo list ver2.0</h1>
 
       <AddTodo
         inputValue={inputValue}
@@ -58,14 +63,12 @@ function TodoList() {
         addTodo={() => addTodo(inputValue)}
       />
 
-      <TodoWrapper
-        dataList={dataList}
-        updateTodo={updateTodo}
-        toggleDataState={toggleDataState}
-        deleteItem={deleteItem}
-      />
+      <MethodContext.Provider value={methods}>
+        <TodoWrapper dataList={dataList} />
+      </MethodContext.Provider>
+
     </div>
   );
 }
 
-export default TodoList;
+export const useMethods = () => useContext(MethodContext);
