@@ -1,24 +1,29 @@
 {
   "files": {
-    "main.css": "/workshop-react/static/css/main.4eb95c64.css",
-    "main.js": "/workshop-react/static/js/main.fef7980f.js",
+    "main.css": "/workshop-react/static/css/main.e5c314f1.css",
+    "main.js": "/workshop-react/static/js/main.0e6d559d.js",
     "static/js/787.e3cfaefd.chunk.js": "/workshop-react/static/js/787.e3cfaefd.chunk.js",
     "static/media/add.svg": "/workshop-react/static/media/add.7ebe9b1d7552f94009a770f2033ba187.svg",
     "static/media/logo.svg": "/workshop-react/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
-    "static/media/trash.svg": "/workshop-react/static/media/trash.5d00cf80ffca0f0c3e8c2df1234aae44.svg",
-    "static/media/edit.svg": "/workshop-react/static/media/edit.9eaca8cd9018eac4a153e9220a89a4f5.svg",
+    "static/media/trash.svg": "/workshop-react/static/media/trash.0bb3e3ee76e1411d178cf8c3833d3661.svg",
+    "static/media/edit.svg": "/workshop-react/static/media/edit.169b831746690ca07dc9039d939f20c5.svg",
     "static/media/check-green.svg": "/workshop-react/static/media/check-green.60bf19bd650018a719cb0aa74fe49721.svg",
     "index.html": "/workshop-react/index.html",
     "static/media/CancelIcon.svg": "/workshop-react/static/media/CancelIcon.6410117d91d1979b54efaebe78ce62d2.svg",
+    "static/media/warning.svg": "/workshop-react/static/media/warning.3032ab4daa3770d7097e9c7b03c4d1d1.svg",
+    "static/media/check.svg": "/workshop-react/static/media/check.ed8e3ffcf1bd79e844916f541057383e.svg",
+    "static/media/error.svg": "/workshop-react/static/media/error.2be3717e152d5ed17390ccd99f61d4e3.svg",
+    "static/media/plus.svg": "/workshop-react/static/media/plus.bed5ac72f52edcf507ebf5823d50c5be.svg",
+    "static/media/check-circle.svg": "/workshop-react/static/media/check-circle.92f8d0c0ddfc0ef210a8f6a164b0f7d9.svg",
     "static/media/EditIcon.svg": "/workshop-react/static/media/EditIcon.127ccb37e0dac77d8cce26c8276aa88d.svg",
     "static/media/DeleteIcon.svg": "/workshop-react/static/media/DeleteIcon.9220d78e4d4278357617a7551feca8fc.svg",
     "static/media/AddIcon.svg": "/workshop-react/static/media/AddIcon.c4f72d60faab97c09686363d45b6b485.svg",
-    "main.4eb95c64.css.map": "/workshop-react/static/css/main.4eb95c64.css.map",
-    "main.fef7980f.js.map": "/workshop-react/static/js/main.fef7980f.js.map",
+    "main.e5c314f1.css.map": "/workshop-react/static/css/main.e5c314f1.css.map",
+    "main.0e6d559d.js.map": "/workshop-react/static/js/main.0e6d559d.js.map",
     "787.e3cfaefd.chunk.js.map": "/workshop-react/static/js/787.e3cfaefd.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.4eb95c64.css",
-    "static/js/main.fef7980f.js"
+    "static/css/main.e5c314f1.css",
+    "static/js/main.0e6d559d.js"
   ]
 }
