@@ -48,7 +48,7 @@ export function TodoListProvider({ children }) {
   };
 
   const edit = ({ target, key }, { id }) => {
-    // // 送出編輯
+    // 送出編輯
     setEdit(target.value, id);
     key === 'Enter' && toggle(id, 'edit');
   };
@@ -77,7 +77,7 @@ export function TodoListProvider({ children }) {
       if (el.id === id) {
         return { ...el, [parm]: !el[parm] };
       }
-      return false;
+      return el;
     });
     setList(newItem);
   };

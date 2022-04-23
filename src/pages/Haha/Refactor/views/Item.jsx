@@ -23,7 +23,7 @@ function EditToggle({ item }) {
     );
   }
   return (
-    <label className="col-span-5 col-start-2 space-x-10">
+    <label className="col-span-5 col-start-2 space-x-10 text-black">
       <input onChange={() => Methods.toggle(item.id, 'done')} type="checkbox" checked={item.done} />
       <span className="cursor-pointer text-lg" onClick={() => Methods.toggle(item.id, 'edit')}>
         {item.value}
