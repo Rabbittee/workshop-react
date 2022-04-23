@@ -6,6 +6,8 @@ export default function Dialog() {
   const { dialog, cancel } = useDialog();
   const { Methods } = useTodoList();
 
+  if (!dialog.show) return null;
+
   return (
     <>
       {dialog.show && (
