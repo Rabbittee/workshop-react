@@ -47,7 +47,7 @@ function TodoList() {
   };
 
   return (
-    <div className="vertial-center h-screen flex-col  bg-blue-300 font-Amatic">
+    <div className="vertical-center h-screen flex-col  bg-blue-300 font-Amatic">
       <div className="my-10 text-3xl text-yellow-300">Todolist</div>
 
       <AddItems add={add} handleDialog={handleDialog} className="bg-red-300" />
