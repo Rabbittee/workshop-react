@@ -8,6 +8,8 @@ export function TodoListProvider({ children }) {
   const [list, setList] = useState([]);
   const [input, setInput] = useState('');
 
+  const state = { edit: 'edit' };
+
   const Init = {
     item: (id = Date.now()) => {
       // 初始化項目
@@ -50,13 +52,13 @@ export function TodoListProvider({ children }) {
   const edit = ({ target, key }, { id }) => {
     // 送出編輯
     setEdit(target.value, id);
-    key === 'Enter' && toggle(id, 'edit');
+    key === 'Enter' && toggle(id, state.edit);
   };
 
   const editBtn = ({ value, id }) => {
     // 送出編輯的按鈕
     setEdit(value, id);
-    toggle(id, 'edit');
+    toggle(id, state.edit);
   };
 
   const del = () => {
